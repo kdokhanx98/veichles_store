@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:motor_bike_new/screens/favourite_scree.dart';
+import 'package:motor_bike_new/screens/favourite_screen.dart';
 import 'package:motor_bike_new/screens/home_screen.dart';
+import 'package:motor_bike_new/screens/search_screen.dart';
+import 'package:motor_bike_new/screens/sell_now_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'dart:io' show Platform;
 
@@ -58,6 +60,8 @@ class _MainScreenState extends State<MainScreen> {
   List<Widget> _buildScreens() {
     return [
       HomeScreen(),
+      SearchScreen(),
+      SellScreen(),
       FavouriteScreen(),
     ];
   }
@@ -67,6 +71,18 @@ class _MainScreenState extends State<MainScreen> {
       PersistentBottomNavBarItem(
         icon: Icon(isAndroid ? Icons.home : CupertinoIcons.home),
         title: ("Home"),
+        activeColorPrimary: Color(0xff00B241),
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Icon(isAndroid ? Icons.search : CupertinoIcons.search),
+        title: ("Find"),
+        activeColorPrimary: Color(0xff00B241),
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Icon(isAndroid ? Icons.add : CupertinoIcons.add),
+        title: ("Sell Now"),
         activeColorPrimary: Color(0xff00B241),
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),

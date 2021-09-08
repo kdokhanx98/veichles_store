@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:motor_bike_new/screens/home_screen.dart';
-import 'package:motor_bike_new/screens/main_scree.dart';
+import 'package:motor_bike_new/screens/main_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   static const routeName = '/login';
