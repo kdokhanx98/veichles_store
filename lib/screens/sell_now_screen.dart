@@ -6,6 +6,10 @@ class SellScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff00B241),
+        title: Text("Add Vehicle"),
+      ),
       body: Center(child: Text("Sell Now Screen")),
     );
   }

@@ -5,6 +5,7 @@ import 'package:motor_bike_new/screens/login_screen.dart';
 import 'package:motor_bike_new/screens/main_screen.dart';
 import 'package:motor_bike_new/screens/search_screen.dart';
 import 'package:motor_bike_new/screens/sell_now_screen.dart';
+import 'package:motor_bike_new/screens/side_menu_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         FavouriteScreen.routeName: (context) => FavouriteScreen(),
         SearchScreen.routeName: (context) => SearchScreen(),
         SellScreen.routeName: (context) => SellScreen(),
+        SideMenuScreen.routeName: (context) => SideMenuScreen(),
       },
     );
   }

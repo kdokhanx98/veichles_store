@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class VeichleRecentlyItem extends StatelessWidget {
+  final bool isLiked;
+
+  const VeichleRecentlyItem(this.isLiked);
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;

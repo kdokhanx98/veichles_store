@@ -4,6 +4,7 @@ import 'package:motor_bike_new/screens/favourite_screen.dart';
 import 'package:motor_bike_new/screens/home_screen.dart';
 import 'package:motor_bike_new/screens/search_screen.dart';
 import 'package:motor_bike_new/screens/sell_now_screen.dart';
+import 'package:motor_bike_new/screens/side_menu_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'dart:io' show Platform;
 
@@ -18,7 +19,6 @@ class _MainScreenState extends State<MainScreen> {
   final bool isAndroid = Platform.isAndroid;
   PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
-  bool _hideNavBar = false;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class _MainScreenState extends State<MainScreen> {
         duration: Duration(milliseconds: 200),
       ),
       navBarStyle:
-          NavBarStyle.style1, // Choose the nav bar style with this property.
+          NavBarStyle.style15, // Choose the nav bar style with this property.
     );
   }
 
@@ -63,6 +63,7 @@ class _MainScreenState extends State<MainScreen> {
       SearchScreen(),
       SellScreen(),
       FavouriteScreen(),
+      SideMenuScreen(),
     ];
   }
 
@@ -81,7 +82,10 @@ class _MainScreenState extends State<MainScreen> {
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(isAndroid ? Icons.add : CupertinoIcons.add),
+        icon: Icon(
+          isAndroid ? Icons.add : CupertinoIcons.add,
+          color: Colors.white,
+        ),
         title: ("Sell Now"),
         activeColorPrimary: Color(0xff00B241),
         inactiveColorPrimary: CupertinoColors.systemGrey,
@@ -89,7 +93,13 @@ class _MainScreenState extends State<MainScreen> {
       PersistentBottomNavBarItem(
         icon: Icon(
             isAndroid ? Icons.favorite : CupertinoIcons.square_favorites_alt),
-        title: ("Favourite"),
+        title: ("Liked"),
+        activeColorPrimary: Color(0xff00B241),
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Icon(Icons.menu),
+        title: ("More"),
         activeColorPrimary: Color(0xff00B241),
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
