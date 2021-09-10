@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: Color(0xff00B241),
         title: !isSearching
-            ? Text("App Name")
+            ? Text("ARS")
             : TextField(
                 onChanged: (value) {
                   searchVeichle(value);
