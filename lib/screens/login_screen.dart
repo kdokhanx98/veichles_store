@@ -26,6 +26,7 @@ class LoginScreen extends StatelessWidget {
             child: Container(
               color: Colors.white.withOpacity(0.0),
               child: FlutterLogin(
+                disableCustomPageTransformer: true,
                 navigateBackAfterRecovery: true,
                 logo: 'assets/ars_logo_alt.png',
                 onLogin: (loginData) {},
