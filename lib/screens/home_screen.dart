@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 controller: searchText,
                 decoration: InputDecoration(
                     hintStyle: TextStyle(color: Colors.white),
-                    hintText: "Search Veichles",
+                    hintText: "Search Vehiches",
                     icon: Icon(
                       Icons.search,
                       color: Colors.white,
@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      "Type of Veichles",
+                      "Type of Vehicles",
                       style: TextStyle(fontSize: 18),
                     ),
                     GestureDetector(

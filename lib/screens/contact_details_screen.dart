@@ -32,23 +32,28 @@ class ContactDetails extends StatelessWidget {
                     _launchCaller("+1 866 675 2271");
                   },
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Text(
-                            "Phone",
-                            style: TextStyle(
-                                color: Color(0xFF212121), fontSize: 18),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Phone",
+                                style: TextStyle(
+                                    color: Color(0xFF212121), fontSize: 18),
+                              ),
+                              Text("866-675-2271",
+                                  style: TextStyle(fontSize: 16)),
+                            ],
                           ),
                           Icon(
                             Icons.keyboard_arrow_right,
                             color: Color(0xFF212121),
-                          )
+                          ),
                         ],
                       ),
-                      Text("866-675-2271", style: TextStyle(fontSize: 16)),
                       SizedBox(height: 10),
                       Divider(),
                     ],

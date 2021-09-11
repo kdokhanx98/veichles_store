@@ -73,9 +73,11 @@ class VeichleRecentlyItem extends StatelessWidget {
                               icon: Icon(
                                 Icons.favorite,
                                 size: 24,
+                                color: isLiked ? Colors.pink : Colors.grey,
                               ),
                               onPressed: () {},
-                              color: Colors.grey.shade500,
+                              color:
+                                  isLiked ? Colors.pink : Colors.grey.shade500,
                             ),
                           ),
                         ),

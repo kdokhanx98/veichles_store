@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:motor_bike_new/screens/contact_details_screen.dart';
 import 'package:motor_bike_new/screens/contact_us_screen.dart';
+import 'package:motor_bike_new/screens/faq_screen.dart';
 import 'package:motor_bike_new/screens/favourite_screen.dart';
 import 'package:motor_bike_new/screens/home_screen.dart';
 import 'package:motor_bike_new/screens/search_screen.dart';
 import 'package:motor_bike_new/screens/sell_now_screen.dart';
+import 'package:motor_bike_new/screens/settings_screen.dart';
 import 'package:motor_bike_new/screens/side_menu_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'dart:io' show Platform;
@@ -77,7 +79,7 @@ class _MainScreenState extends State<MainScreen> {
             getDrawerItem(
                 Icons.notification_important_outlined, "Notifications",
                 callback: () {
-              print("Notifications clicked");
+              Navigator.popAndPushNamed(context, SettingsScreen.routeName);
             }),
             getDrawerItem(Icons.chat_bubble_outline, "Get in Touch",
                 callback: () {
@@ -88,7 +90,7 @@ class _MainScreenState extends State<MainScreen> {
               Navigator.popAndPushNamed(context, ContactDetails.routeName);
             }),
             getDrawerItem(Icons.help_outline, "FAQ", callback: () {
-              print("FAQ clicked");
+              Navigator.popAndPushNamed(context, FAQScreen.routeName);
             }),
             SizedBox(height: height * 0.3),
             Center(
