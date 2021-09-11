@@ -28,10 +28,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_login: ^2.2.1
   persistent_bottom_nav_bar: ^4.0.2
-  image_picker: ^0.8.4
+  image_picker: 
   dotted_border: ^2.0.0+1
-  url_launcher: ^6.0.10
+  url_launcher: 
   fluttertoast: ^8.0.8
+  google_map_location_picker: 
+
+
 
 dev_dependencies:
   flutter_test:
