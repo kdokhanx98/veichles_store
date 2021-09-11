@@ -7,7 +7,6 @@ import 'package:motor_bike_new/screens/favourite_screen.dart';
 import 'package:motor_bike_new/screens/home_screen.dart';
 import 'package:motor_bike_new/screens/login_screen.dart';
 import 'package:motor_bike_new/screens/main_screen.dart';
-import 'package:motor_bike_new/screens/product_details_screen.dart';
 import 'package:motor_bike_new/screens/search_screen.dart';
 import 'package:motor_bike_new/screens/sell_now_screen.dart';
 import 'package:motor_bike_new/screens/settings_screen.dart';
@@ -42,7 +41,6 @@ class MyApp extends StatelessWidget {
         SettingsScreen.routeName: (context) => SettingsScreen(),
         FAQScreen.routeName: (context) => FAQScreen(),
         ViewAllProudctsScreen.routeName: (context) => ViewAllProudctsScreen(),
-        ProductDetailsScreen.routeName: (context) => ProductDetailsScreen(),
       },
     );
   }

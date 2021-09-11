@@ -134,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemCount: 8,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (BuildContext context, int index) {
-                        return VeichleRecentlyItem(false);
+                        return VeichleRecentlyItem(false, index);
                       }),
                 ),
               ),

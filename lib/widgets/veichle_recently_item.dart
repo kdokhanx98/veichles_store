@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:motor_bike_new/screens/product_details_screen.dart';
 
 class VeichleRecentlyItem extends StatelessWidget {
   final bool isLiked;
-
-  const VeichleRecentlyItem(this.isLiked);
+  final int index;
+  const VeichleRecentlyItem(this.isLiked, this.index);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,9 @@ class VeichleRecentlyItem extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        print("recently clicked");
+        Navigator.push(context, new MaterialPageRoute(builder: (context) {
+          return ProductDetailsScreen();
+        }));
       },
       child: Container(
         height: height * 0.31,

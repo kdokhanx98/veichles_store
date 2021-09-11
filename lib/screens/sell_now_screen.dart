@@ -297,11 +297,10 @@ class _SellScreenState extends State<SellScreen> {
                     child: Container(
                   margin: EdgeInsets.only(left: 47, right: 16),
                   child: TextField(
-                    // enabled: false,
-
                     onTap: () {
                       print("show map");
                     },
+                    readOnly: true,
                     controller: locationController,
                     decoration: InputDecoration(
                         isDense: true,
@@ -968,7 +967,7 @@ class _SellScreenState extends State<SellScreen> {
                 ),
                 child: MaterialButton(
                   height: 50,
-                  minWidth: 150,
+                  minWidth: 200,
                   onPressed: () {
                     print("add vehicle clicked");
                   },

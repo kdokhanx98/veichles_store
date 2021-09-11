@@ -21,7 +21,7 @@ class FavouriteScreen extends StatelessWidget {
               itemCount: 3,
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (BuildContext context, int index) {
-                return VeichleRecentlyItem(true);
+                return VeichleRecentlyItem(true, index);
               }),
         ),
       ),
