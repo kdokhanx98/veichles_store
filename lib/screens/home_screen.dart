@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:motor_bike_new/screens/all_categories_screen.dart';
+import 'package:motor_bike_new/screens/all_products_screen.dart';
 import 'package:motor_bike_new/widgets/veichle_recently_item.dart';
 import 'package:motor_bike_new/widgets/veichle_type_item.dart';
 
@@ -18,24 +20,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.width;
     return Scaffold(
-      // appBar: AppBar(
-
-      //   backgroundColor: Color(0xff00B241),
-      //   title: TextField(
-      //     onChanged: (value) {
-      //       searchVeichle(value);
-      //     },
-      //     style: TextStyle(color: Colors.white),
-      //     controller: searchText,
-      //     decoration: InputDecoration(
-      //         hintStyle: TextStyle(color: Colors.white),
-      //         hintText: "Search Vehiches",
-      //         icon: Icon(
-      //           Icons.search,
-      //           color: Colors.white,
-      //         )),
-      //   ),
-      // ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -112,7 +96,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: TextStyle(fontSize: 18),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(context,
+                            new MaterialPageRoute(builder: (context) {
+                          return ViewAllCategoriesScreen();
+                        }));
+                      },
                       child: Text(
                         "View All",
                         style: TextStyle(fontSize: 14, color: Colors.blue),
@@ -136,7 +125,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       scrollDirection: Axis.horizontal,
                       itemCount: 8,
                       itemBuilder: (BuildContext context, int index) {
-                        return VeichleTypeItem();
+                        return VeichleTypeItem(
+                          viewAll: false,
+                        );
                       }),
                 ),
               ),
@@ -156,7 +147,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: TextStyle(fontSize: 18),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(context,
+                            new MaterialPageRoute(builder: (context) {
+                          return ViewAllProudctsScreen();
+                        }));
+                      },
                       child: Text(
                         "View All",
                         style: TextStyle(fontSize: 14, color: Colors.blue),

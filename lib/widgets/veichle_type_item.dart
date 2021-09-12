@@ -10,6 +10,7 @@ class VeichleTypeItem extends StatelessWidget {
   final int? parent;
   final String? slug;
   final String? image;
+  final bool viewAll;
 
   const VeichleTypeItem(
       {this.count,
@@ -20,7 +21,8 @@ class VeichleTypeItem extends StatelessWidget {
       this.name,
       this.parent,
       this.slug,
-      this.image});
+      this.image,
+      required this.viewAll});
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +33,13 @@ class VeichleTypeItem extends StatelessWidget {
         print("test click");
       },
       child: Container(
-        margin: EdgeInsets.only(left: 16, right: 16),
+        margin: viewAll
+            ? EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8)
+            : EdgeInsets.only(left: 16, right: 16),
         child: Column(
           children: <Widget>[
             Container(
-                width: width * 0.35,
+                width: viewAll ? width * 0.95 : width * 0.35,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -49,36 +53,52 @@ class VeichleTypeItem extends StatelessWidget {
                   ],
                 ),
                 child: Column(children: [
-                  Container(
-                    width: width * 0.35,
-                    height: height * 0.12,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage("assets/motor-coach.jpg"),
-                      ),
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                      ),
-                    ),
-                  ), //cat circles
+                  viewAll
+                      ? Container(
+                          width: width,
+                          height: height * 0.3,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage("assets/motor-coach.jpg"),
+                            ),
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                            ),
+                          ),
+                        )
+                      : Container(
+                          width: width * 0.35,
+                          height: height * 0.12,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage("assets/motor-coach.jpg"),
+                            ),
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                            ),
+                          ),
+                        ), //cat circles
 
                   SizedBox(
                     height: height * 0.009,
                   ),
-                  Text(
-                    "Limo Bus",
-                    style: TextStyle(fontSize: 15),
-                  ),
+                  viewAll
+                      ? Text(
+                          "Limo Bus",
+                          style: TextStyle(fontSize: 18),
+                        )
+                      : Text(
+                          "Limo Bus",
+                          style: TextStyle(fontSize: 15),
+                        ),
                   SizedBox(
                     height: height * 0.009,
                   ),
                 ])),
-            // SizedBox(height: spacing_control),
-            // text(list[index].name,
-            //     textColor: colors[index % colors.length],
-            //     fontFamily: fontMedium)
           ],
         ),
       ),

@@ -713,7 +713,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 32.0),
+                    padding: const EdgeInsets.only(bottom: 40.0),
                     child: Container(
                       height: 50,
                       padding: EdgeInsets.only(

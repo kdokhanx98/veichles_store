@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
-import 'package:motor_bike_new/screens/all_products_screen.dart';
 import 'package:motor_bike_new/screens/contact_details_screen.dart';
 import 'package:motor_bike_new/screens/contact_us_screen.dart';
 import 'package:motor_bike_new/screens/faq_screen.dart';
@@ -56,7 +55,6 @@ class _MyAppState extends State<MyApp> {
         ContactDetails.routeName: (context) => ContactDetails(),
         SettingsScreen.routeName: (context) => SettingsScreen(),
         FAQScreen.routeName: (context) => FAQScreen(),
-        ViewAllProudctsScreen.routeName: (context) => ViewAllProudctsScreen(),
       },
     );
   }

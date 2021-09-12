@@ -100,6 +100,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: TextField(
+                      enabled: false,
                       controller: priceStartRangeController,
                       decoration: InputDecoration(
                           isDense: true,
@@ -120,8 +121,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               borderRadius: BorderRadius.circular(5),
                               borderSide:
                                   BorderSide(color: Colors.grey, width: 0.5))),
-                      // decoration: const InputDecoration(
-                      //     border: OutlineInputBorder(), hintText: 'a'),
+                      keyboardType: TextInputType.number,
                     ),
                   ),
                 ),
@@ -133,6 +133,8 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: Padding(
                     padding: const EdgeInsets.only(right: 8.0),
                     child: TextField(
+                      enabled: false,
+                      keyboardType: TextInputType.number,
                       controller: priceEndRangeController,
                       decoration: InputDecoration(
                           isDense: true,
@@ -241,7 +243,9 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: TextField(
+                      enabled: false,
                       controller: mileageStartRangeController,
+                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                           isDense: true,
                           hintText: "Search vehicles",
@@ -274,6 +278,8 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: Padding(
                     padding: const EdgeInsets.only(right: 8.0),
                     child: TextField(
+                      enabled: false,
+                      keyboardType: TextInputType.number,
                       controller: mileageEndRangeController,
                       decoration: InputDecoration(
                           isDense: true,
@@ -384,6 +390,8 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: TextField(
+                      enabled: false,
+                      keyboardType: TextInputType.number,
                       controller: makeStartRangeController,
                       decoration: InputDecoration(
                           isDense: true,
@@ -417,6 +425,8 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: Padding(
                     padding: const EdgeInsets.only(right: 8.0),
                     child: TextField(
+                      enabled: false,
+                      keyboardType: TextInputType.number,
                       controller: makeEndRangeController,
                       decoration: InputDecoration(
                           isDense: true,

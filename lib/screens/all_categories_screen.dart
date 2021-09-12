@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:motor_bike_new/widgets/veichle_recently_item.dart';
+import 'package:motor_bike_new/widgets/veichle_type_item.dart';
 
-class ViewAllProudctsScreen extends StatefulWidget {
+class ViewAllCategoriesScreen extends StatefulWidget {
+  const ViewAllCategoriesScreen({Key? key}) : super(key: key);
+
   @override
-  _ViewAllProudctsScreenState createState() => _ViewAllProudctsScreenState();
+  _ViewAllCategoriesScreenState createState() =>
+      _ViewAllCategoriesScreenState();
 }
 
-class _ViewAllProudctsScreenState extends State<ViewAllProudctsScreen> {
+class _ViewAllCategoriesScreenState extends State<ViewAllCategoriesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("All Proucts"),
+        title: Text("All Categories"),
         backgroundColor: Color(0xff00B241),
         backwardsCompatibility: true,
       ),
@@ -24,10 +27,12 @@ class _ViewAllProudctsScreenState extends State<ViewAllProudctsScreen> {
                 child: ListView.builder(
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
-                    itemCount: 15,
+                    itemCount: 6,
                     physics: NeverScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
-                      return VeichleRecentlyItem(false, index);
+                      return VeichleTypeItem(
+                        viewAll: true,
+                      );
                     }),
               ),
             ),
