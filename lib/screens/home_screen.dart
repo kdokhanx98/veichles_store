@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:motor_bike_new/widgets/veichle_recently_item.dart';
 import 'package:motor_bike_new/widgets/veichle_type_item.dart';
 
@@ -17,49 +18,85 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff00B241),
-        title: !isSearching
-            ? Text("ARS")
-            : TextField(
-                onChanged: (value) {
-                  searchVeichle(value);
-                },
-                style: TextStyle(color: Colors.white),
-                controller: searchText,
-                decoration: InputDecoration(
-                    hintStyle: TextStyle(color: Colors.white),
-                    hintText: "Search Vehiches",
-                    icon: Icon(
-                      Icons.search,
-                      color: Colors.white,
-                    )),
-              ),
-        actions: [
-          isSearching
-              ? IconButton(
-                  icon: Icon(Icons.cancel),
-                  onPressed: () {
-                    setState(() {
-                      searchText.clear();
-                      isSearching = false;
-                    });
-                  },
-                )
-              : IconButton(
-                  icon: Icon(Icons.search),
-                  onPressed: () {
-                    setState(() {
-                      isSearching = true;
-                    });
-                  },
-                ),
-        ],
-      ),
+      // appBar: AppBar(
+
+      //   backgroundColor: Color(0xff00B241),
+      //   title: TextField(
+      //     onChanged: (value) {
+      //       searchVeichle(value);
+      //     },
+      //     style: TextStyle(color: Colors.white),
+      //     controller: searchText,
+      //     decoration: InputDecoration(
+      //         hintStyle: TextStyle(color: Colors.white),
+      //         hintText: "Search Vehiches",
+      //         icon: Icon(
+      //           Icons.search,
+      //           color: Colors.white,
+      //         )),
+      //   ),
+      // ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
+              GestureDetector(
+                onTap: () {
+                  print('done');
+                  // ShSearchScreen().launch(context);
+                },
+                child: Container(
+                    color: Color(0xff00B241),
+                    child: Padding(
+                        padding: EdgeInsets.only(
+                            left: 14, right: 14, top: 20, bottom: 20),
+                        child: Stack(
+                          alignment: Alignment.topRight,
+                          children: <Widget>[
+                            TextFormField(
+                              enabled: true,
+                              cursorHeight: 25,
+                              keyboardType: TextInputType.text,
+                              autofocus: false,
+                              controller: searchText,
+                              textCapitalization: TextCapitalization.words,
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 16),
+                              decoration: InputDecoration(
+                                  isDense: true,
+                                  hintText: "Search vehicles",
+                                  hintStyle: TextStyle(color: Colors.grey),
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  contentPadding:
+                                      EdgeInsets.fromLTRB(15, 10, 15, 10),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(5),
+                                      borderSide: BorderSide(
+                                          color: Colors.grey, width: 0.5)),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(5),
+                                      borderSide: BorderSide(
+                                          color: Colors.grey, width: 0.5)),
+                                  disabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(5),
+                                      borderSide: BorderSide(
+                                          color: Colors.grey, width: 0.5))),
+                            ),
+                            Container(
+                                decoration: BoxDecoration(
+                                    border: Border(
+                                        left: BorderSide(
+                                            width: 1,
+                                            color: Colors.grey.shade500))),
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(10, 8, 10, 7),
+                                  child: Icon(Icons.search_outlined,
+                                      color: Colors.grey.shade500),
+                                ))
+                          ],
+                        ))),
+              ),
               // this is type of veichles section
               Padding(
                 padding: const EdgeInsets.only(
@@ -85,7 +122,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
+                padding: const EdgeInsets.only(
+                  left: 8.0,
+                  right: 8.0,
+                  top: 8.0,
+                ),
                 child: Container(
                   height: height * 0.35,
                   margin: EdgeInsets.only(top: 0),
@@ -126,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
 
               Padding(
-                padding: const EdgeInsets.only(bottom: 15.0),
+                padding: const EdgeInsets.only(bottom: 40.0),
                 child: Container(
                   child: ListView.builder(
                       shrinkWrap: true,

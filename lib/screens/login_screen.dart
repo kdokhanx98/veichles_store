@@ -29,12 +29,11 @@ class LoginScreen extends StatelessWidget {
                 disableCustomPageTransformer: true,
                 navigateBackAfterRecovery: true,
                 logo: 'assets/ars_logo_alt.png',
-                onLogin: (loginData) {},
-                onSignup: (loginData) {},
-                onSubmitAnimationCompleted: () {
+                onLogin: (loginData) {
                   Navigator.of(context)
                       .pushReplacementNamed(MainScreen.routeName);
                 },
+                onSignup: (loginData) {},
                 onRecoverPassword: (code) {},
                 theme: LoginTheme(
                   buttonTheme: LoginButtonTheme(

@@ -92,7 +92,7 @@ class _MainScreenState extends State<MainScreen> {
             getDrawerItem(Icons.help_outline, "FAQ", callback: () {
               Navigator.popAndPushNamed(context, FAQScreen.routeName);
             }),
-            SizedBox(height: height * 0.3),
+            SizedBox(height: height * 0.2),
             Center(
               child: Column(
                 children: [
@@ -156,14 +156,16 @@ class _MainScreenState extends State<MainScreen> {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: Icon(isAndroid ? Icons.home : CupertinoIcons.home),
+        icon: Icon(Icons.home),
         title: ("Home"),
+        inactiveIcon: Icon(Icons.home_outlined),
         activeColorPrimary: Color(0xff00B241),
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(isAndroid ? Icons.search : CupertinoIcons.search),
+        icon: Icon(Icons.find_in_page),
         title: ("Find"),
+        inactiveIcon: Icon(Icons.find_in_page_outlined),
         activeColorPrimary: Color(0xff00B241),
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
@@ -177,15 +179,16 @@ class _MainScreenState extends State<MainScreen> {
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(
-            isAndroid ? Icons.favorite : CupertinoIcons.square_favorites_alt),
+        icon: Icon(Icons.favorite),
         title: ("Liked"),
+        inactiveIcon: Icon(Icons.favorite_outline),
         activeColorPrimary: Color(0xff00B241),
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.menu),
+        icon: Icon(Icons.menu_outlined),
         title: ("More"),
+        activeColorSecondary: Color(0xff00B241),
         onPressed: (context) {
           _key.currentState!.openDrawer();
         },

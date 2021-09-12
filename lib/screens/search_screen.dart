@@ -42,6 +42,23 @@ class _SearchScreenState extends State<SearchScreen> {
   ];
 
   @override
+  void initState() {
+    makeStartRangeController.text =
+        _currentMakeRangeValues.start.round().toString();
+    makeEndRangeController.text =
+        _currentMakeRangeValues.end.round().toString();
+    priceStartRangeController.text =
+        _currentPriceRangeValues.start.round().toString();
+    priceEndRangeController.text =
+        _currentPriceRangeValues.end.round().toString();
+    mileageStartRangeController.text =
+        _currentMileageRangeValues.start.round().toString();
+    mileageEndRangeController.text =
+        _currentMileageRangeValues.end.round().toString();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

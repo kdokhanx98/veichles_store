@@ -79,8 +79,7 @@ class ContactDetails extends StatelessWidget {
                       ),
                       Text(
                         "info@advantageremarketing.com",
-                        style:
-                            TextStyle(color: Color(0xFF212121), fontSize: 18),
+                        style: TextStyle(fontSize: 18),
                       ),
                       SizedBox(height: 10),
                       Divider()
@@ -107,8 +106,7 @@ class ContactDetails extends StatelessWidget {
                       ),
                       Text(
                         "8187 Ritchie Hwy Pasadena, MD 21122",
-                        style:
-                            TextStyle(color: Color(0xFF212121), fontSize: 16),
+                        style: TextStyle(fontSize: 16),
                       ),
                       SizedBox(height: 10),
                       Divider()
@@ -135,8 +133,7 @@ class ContactDetails extends StatelessWidget {
                       ),
                       Text(
                         "Monday - Friday | 9am - 5pm",
-                        style:
-                            TextStyle(color: Color(0xFF212121), fontSize: 16),
+                        style: TextStyle(fontSize: 16),
                       ),
                       SizedBox(height: 10),
                       Divider()
