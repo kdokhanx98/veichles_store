@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -70,7 +69,7 @@ class Contentrovider with ChangeNotifier {
             image: e['images'] != ""
                 ? (e['images'] as List<dynamic>)
                     .map((element) => element.toString())
-                    .toList() 
+                    .toList()
                 : [],
             carleaderListingEngine: e['metadata'].containsKey('_carleader_listing_engine')
                 ? e['metadata']['_carleader_listing_engine'][0]
@@ -90,7 +89,7 @@ class Contentrovider with ChangeNotifier {
                     : "",
             carleaderListingPrice: e['metadata'].containsKey("_carleader_listing_price") ? e['metadata']['_carleader_listing_price'][0] : "50",
             metaBodyTitle: e['body-type'][0].containsKey("name") ? e['body-type'][0]['name'] : "None",
-            carleaderListingEngineflue:  e['metadata'].containsKey("_carleader_listing_model_engine_fuel") ? e['metadata']['_carleader_listing_model_engine_fuel'][0] : "Gaz",
+            carleaderListingEngineflue: e['metadata'].containsKey("_carleader_listing_model_engine_fuel") ? e['metadata']['_carleader_listing_model_engine_fuel'][0] : "Gaz",
             carleaderListingWheels: e['metadata'].containsKey('_carleader_listing_wheels') ? e['metadata']['_carleader_listing_wheels'][0] : "",
             content: e['content']['rendered'] ?? "",
             carleaderListingVin: e['metadata'].containsKey("_carleader_listing_vin") ? e['metadata']['_carleader_listing_vin'][0] : ""));

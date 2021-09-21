@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:motor_bike_new/screens/login_screen.dart';
 
 import '../constants.dart';
 
 class AccountScreen extends StatelessWidget {
-      static const routeName = '/AccountScreen';
-
+  static const routeName = '/AccountScreen';
 
   GlobalKey<FormState> formKey = GlobalKey();
   TextEditingController emailControl = TextEditingController();
@@ -26,12 +24,11 @@ class AccountScreen extends StatelessWidget {
             SizedBox(
               height: size.height * 0.1,
             ),
-        
             Text(
               "My Account",
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
-             SizedBox(
+            SizedBox(
               height: size.height * 0.04,
             ),
             Padding(
@@ -43,7 +40,7 @@ class AccountScreen extends StatelessWidget {
                     Row(
                       children: [
                         Container(
-                          width: size.width *0.44,
+                          width: size.width * 0.44,
                           height: size.height * 0.09,
                           decoration: BoxDecoration(
                             color: kBackgroundColor,
@@ -64,7 +61,8 @@ class AccountScreen extends StatelessWidget {
                               ),
                               Expanded(
                                 child: TextFormField(
-                                    textCapitalization: TextCapitalization.words,
+                                    textCapitalization:
+                                        TextCapitalization.words,
                                     obscureText: false,
                                     onFieldSubmitted: (term) {},
                                     controller: emailControl,
@@ -74,8 +72,7 @@ class AccountScreen extends StatelessWidget {
                                       hintText: "First Name",
                                     ),
                                     validator: (value) {
-                                      if (
-                                          (value!.length < 255) == false ||
+                                      if ((value!.length < 255) == false ||
                                           value.isEmpty) {
                                         return 'Please enter a valid name';
                                       }
@@ -86,61 +83,57 @@ class AccountScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                      width: size.width * 0.03,
-                    ),
-                   
+                          width: size.width * 0.03,
+                        ),
                         Container(
-                      width: size.width *0.45,
-                      height: size.height * 0.09,
-                      decoration: BoxDecoration(
-                        color: kBackgroundColor,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: size.width * 0.03,
+                          width: size.width * 0.45,
+                          height: size.height * 0.09,
+                          decoration: BoxDecoration(
+                            color: kBackgroundColor,
+                            borderRadius: BorderRadius.circular(15),
                           ),
-                          Icon(
-                            Icons.person,
-                            color: kgaryColor,
-                            size: 25,
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: size.width * 0.03,
+                              ),
+                              Icon(
+                                Icons.person,
+                                color: kgaryColor,
+                                size: 25,
+                              ),
+                              SizedBox(
+                                width: size.width * 0.02,
+                              ),
+                              Expanded(
+                                child: TextFormField(
+                                    textCapitalization:
+                                        TextCapitalization.words,
+                                    obscureText: false,
+                                    onFieldSubmitted: (term) {},
+                                    controller: emailControl,
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.all(0.0),
+                                      border: InputBorder.none,
+                                      hintText: "Last Name",
+                                    ),
+                                    validator: (value) {
+                                      if ((value!.length < 255) == false ||
+                                          value.isEmpty) {
+                                        return 'Please enter a valid name';
+                                      }
+                                      return null;
+                                    }),
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            width: size.width * 0.02,
-                          ),
-                          Expanded(
-                            child: TextFormField(
-                                textCapitalization: TextCapitalization.words,
-                                obscureText: false,
-                                onFieldSubmitted: (term) {},
-                                controller: emailControl,
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.all(0.0),
-                                  border: InputBorder.none,
-                                  hintText: "Last Name",
-                                ),
-                                validator: (value) {
-                                  if (
-                                      (value!.length < 255) == false ||
-                                      value.isEmpty) {
-                                    return 'Please enter a valid name';
-                                  }
-                                  return null;
-                                }),
-                          ),
-                        ],
-                      ),
-                    ),
-                 
+                        ),
                       ],
                     ),
-                    
                     SizedBox(
                       height: size.height * 0.02,
                     ),
-                   
-                     Container(
+                    Container(
                       width: size.width,
                       height: size.height * 0.09,
                       decoration: BoxDecoration(
@@ -183,7 +176,6 @@ class AccountScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                  
                     SizedBox(
                       height: size.height * 0.02,
                     ),
@@ -230,7 +222,6 @@ class AccountScreen extends StatelessWidget {
                     SizedBox(
                       height: size.height * 0.02,
                     ),
-                
                     Container(
                       width: size.width,
                       height: size.height * 0.09,
@@ -271,36 +262,36 @@ class AccountScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                
                   ],
                 ),
               ),
             ),
-    Spacer(),
-             GestureDetector(
-                          onTap: () {
-                          },
-                          child: Container(
-                            width: size.width * 0.9,
-                            height: size.height * 0.077,
-                            decoration: BoxDecoration(
-                                color: kPrimaryColor,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Center(
-                              child: Text(
-                                "Eidt",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: size.height*0.03,),
-                        SizedBox(height: size.height*0.05,),
-
-
+            Spacer(),
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                width: size.width * 0.9,
+                height: size.height * 0.077,
+                decoration: BoxDecoration(
+                    color: kPrimaryColor,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Center(
+                  child: Text(
+                    "Eidt",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: size.height * 0.03,
+            ),
+            SizedBox(
+              height: size.height * 0.05,
+            ),
           ],
         ),
       ),
