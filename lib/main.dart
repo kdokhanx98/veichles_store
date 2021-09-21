@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
 import 'package:motor_bike_new/screens/contact_details_screen.dart';
 import 'package:motor_bike_new/screens/contact_us_screen.dart';
@@ -24,7 +23,7 @@ import 'screens/my_listings.dart';
 import 'screens/register_screen.dart';
 
 void main() {
-  runApp(MyApp()); 
+  runApp(MyApp());
 }
 
 Future changeStatusColor() async {
@@ -42,16 +41,16 @@ class _MyAppState extends State<MyApp> {
     changeStatusColor();
     super.initState();
   }
-   
 
   @override
   Widget build(BuildContext context) {
-     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-   statusBarColor: Colors.white, // Color for Android
-   statusBarBrightness: Brightness.dark // Dark == white status bar -- for IOS.
-));
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+        statusBarColor: Colors.white, // Color for Android
+        statusBarBrightness:
+            Brightness.dark // Dark == white status bar -- for IOS.
+        ));
     return MultiProvider(
-         providers: [
+      providers: [
         ListenableProvider<AuthProvider>(create: (_) => AuthProvider()),
         ListenableProvider<Contentrovider>(create: (_) => Contentrovider()),
       ],
@@ -68,6 +67,7 @@ class _MyAppState extends State<MyApp> {
           )
         ),
         home: LoginScreen(),
+
         routes: {
           ForgetPasswordScreen.routeName: (context) => ForgetPasswordScreen(),
           LoginScreen.routeName: (context) => LoginScreen(),
