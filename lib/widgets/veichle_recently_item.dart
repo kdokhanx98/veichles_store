@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:motor_bike_new/provider/content_provider.dart';
 import 'package:motor_bike_new/screens/product_details_screen.dart';
+import 'package:provider/provider.dart';
 
 class VeichleRecentlyItem extends StatelessWidget {
   final bool isLiked;
@@ -10,24 +12,21 @@ class VeichleRecentlyItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.width;
+    final recentlyAddedData = Provider.of<Contentrovider>(context, listen: false).getvehicleLList;
 
     return InkWell(
       onTap: () {
         Navigator.push(context, new MaterialPageRoute(builder: (context) {
-          return ProductDetailsScreen();
+          return ProductDetailsScreen(id: recentlyAddedData[index].id!);
         }));
       },
       child: Container(
         height: height * 0.31,
         width: double.infinity,
-        margin: EdgeInsets.only(top: 15, left: 16, right: 16),
+        margin: EdgeInsets.only(top: 15, left: 5, right: 16),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(5),
-              topRight: Radius.circular(5),
-              bottomLeft: Radius.circular(5),
-              bottomRight: Radius.circular(5)),
+          borderRadius: BorderRadius.circular(5),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.shade300.withOpacity(0.5),
@@ -47,11 +46,16 @@ class VeichleRecentlyItem extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(8.0),
                         bottomLeft: Radius.circular(8.0)),
-                    child: Image.asset("assets/2a.jpg",
+                    child: recentlyAddedData[index].image!.length==0?  Image.asset("assets/image_placeholder.jpg",
+                        fit: BoxFit.cover,
+                        height: width * 0.35,
+                        width: width * 0.29) :Image.network(recentlyAddedData[index].image![0],
                         fit: BoxFit.cover,
                         height: width * 0.35,
                         width: width * 0.29),
-                  )),
+                  )
+                  
+                  ),
               SizedBox(width: width * 0.015),
               Expanded(
                 child: Column(
@@ -62,7 +66,7 @@ class VeichleRecentlyItem extends StatelessWidget {
                         Expanded(
                           flex: 7,
                           child: Text(
-                            "2019 Ford TurtleTop Vanterra Non-CDL Executive Coach",
+                            recentlyAddedData[index].title!,
                             maxLines: 2,
                             style: TextStyle(
                               fontSize: 15.0,
@@ -94,7 +98,7 @@ class VeichleRecentlyItem extends StatelessWidget {
                           child: Row(
                             children: <Widget>[
                               Text(
-                                '\$87,900',
+                                '\$${recentlyAddedData[index].carleaderListingPrice}',
                                 maxLines: 1,
                                 style: TextStyle(
                                     color: Colors.grey.shade800, fontSize: 16),
@@ -111,7 +115,7 @@ class VeichleRecentlyItem extends StatelessWidget {
                               child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              Text("2019",
+                              Text(recentlyAddedData[index].yser!,
                                   style: TextStyle(
                                       color: Colors.grey.shade500,
                                       fontSize: 14)),
@@ -123,7 +127,7 @@ class VeichleRecentlyItem extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                '1235 mi.',
+                               recentlyAddedData[index].carleaderListingMiles!+"mi",
                                 style: TextStyle(
                                   color: Colors.grey.shade500,
                                   fontSize: 14,
@@ -137,7 +141,7 @@ class VeichleRecentlyItem extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                'Gasoline',
+                                recentlyAddedData[index].carleaderListingEngineflue!,
                                 style: TextStyle(
                                   color: Colors.grey.shade500,
                                   fontSize: 14,

@@ -12,8 +12,10 @@ import 'package:motor_bike_new/screens/side_menu_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'dart:io' show Platform;
 
+import 'my_listings.dart';
+
 class MainScreen extends StatefulWidget {
-  static const routeName = '/main';
+  static const routeName = '/';
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -91,6 +93,12 @@ class _MainScreenState extends State<MainScreen> {
             }),
             getDrawerItem(Icons.help_outline, "FAQ", callback: () {
               Navigator.popAndPushNamed(context, FAQScreen.routeName);
+            }),
+            getDrawerItem(Icons.help_outline, "FAQ", callback: () {
+              Navigator.popAndPushNamed(context, FAQScreen.routeName);
+            }),
+            getDrawerItem(Icons.help_outline, "My Listings", callback: () {
+              Navigator.popAndPushNamed(context, MyListingsScreen.routeName);
             }),
             SizedBox(height: height * 0.2),
             Center(

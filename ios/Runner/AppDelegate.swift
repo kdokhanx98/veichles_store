@@ -3,6 +3,7 @@ import Flutter
 import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
+import GoogleMaps
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
@@ -14,8 +15,11 @@ import AppCenterCrashes
       Analytics.self,
       Crashes.self
     ])
-    
+
+    GMSServices.provideAPIKey("AIzaSyDuvKjR_UiGlyNhUryUHiIzJ9inbecS7F4")
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+  
+
   }
 }

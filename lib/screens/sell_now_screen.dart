@@ -4,6 +4,9 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:motor_bike_new/constants.dart';
+import 'package:motor_bike_new/screens/location_screen.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class SellScreen extends StatefulWidget {
   static const routeName = '/sell';
@@ -18,7 +21,7 @@ class _SellScreenState extends State<SellScreen> {
   var makeController = TextEditingController();
   var mileageController = TextEditingController();
   var descriptionController = TextEditingController();
-
+  
   List<XFile>? selectedPics = [];
   final ImagePicker _picker = ImagePicker();
   bool isEmpty = true;
@@ -84,8 +87,12 @@ class _SellScreenState extends State<SellScreen> {
     "2021",
   ];
 
+
+
   @override
   Widget build(BuildContext context) {
+    if(locationPosition!=null)
+    locationController.text = locationPosition.toString();
     final height = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
@@ -95,7 +102,7 @@ class _SellScreenState extends State<SellScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            isEmpty
+            selectedPics!.length==0
                 ? GestureDetector(
                     onTap: () {
                       print("clicked");
@@ -137,9 +144,23 @@ class _SellScreenState extends State<SellScreen> {
                                   crossAxisCount: 3),
                           itemBuilder: (BuildContext context, int index) {
                             return Center(
-                                child: Image.file(
-                                    File(selectedPics![index].path),
-                                    fit: BoxFit.cover));
+                                child: Stack(
+      children: [
+
+        Image.file(File(selectedPics![index].path),
+                                    fit: BoxFit.cover),
+                                    Positioned(child: GestureDetector(
+                                      onTap: (){
+                                        setState(() {
+                                          selectedPics!.removeAt(index);
+                                        });
+                                      },
+                                      child: Icon(Icons.cancel))),
+
+
+      ],
+      
+    ));
                           }),
                     ),
                   ),
@@ -299,6 +320,14 @@ class _SellScreenState extends State<SellScreen> {
                   child: TextField(
                     onTap: () {
                       print("show map");
+                      pushNewScreen(
+        context,
+        screen: GetLocation(),
+        withNavBar: false, // OPTIONAL VALUE. True by default.
+        pageTransitionAnimation: PageTransitionAnimation.cupertino,
+    );
+    
+                       //   Navigator.of(context).pushNamed(GetLocation.routeName);
                     },
                     readOnly: true,
                     controller: locationController,
@@ -991,7 +1020,9 @@ class _SellScreenState extends State<SellScreen> {
     selectedPics = await _picker.pickMultiImage();
 
     if (selectedPics != null) {
+      print(selectedPics);
       setState(() {
+
         if (selectedPics!.isNotEmpty) {
           isEmpty = false;
         }

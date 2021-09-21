@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:motor_bike_new/provider/content_provider.dart';
 import 'package:motor_bike_new/screens/all_categories_screen.dart';
 import 'package:motor_bike_new/screens/all_products_screen.dart';
 import 'package:motor_bike_new/widgets/veichle_recently_item.dart';
 import 'package:motor_bike_new/widgets/veichle_type_item.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home';
@@ -16,12 +18,44 @@ class _HomeScreenState extends State<HomeScreen> {
   final searchText = TextEditingController();
   bool isSearching = false;
 
+   var isInit = true;
+  var loading = true;
+
+  @override
+  void didChangeDependencies() {
+    if (isInit) {
+
+   final providerData = Provider.of<Contentrovider>(context, listen: false);
+        if ( true) {
+          providerData
+                  .getCatgeroyRequest(
+                    )
+                  .then(
+                (_) {
+                  setState(() {
+                    loading = false;
+                        isInit = false;
+
+                  });
+                },
+              );
+
+               providerData
+                  .getURecentlyRequest();
+
+    }
+    super.didChangeDependencies();
+  }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final cateData = Provider.of<Contentrovider>(context, listen: false).getCatgeroyLList;
+    final recentlyAddedData = Provider.of<Contentrovider>(context, listen: false).getvehicleLList;
     final height = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
+        child:loading?Center(child: CircularProgressIndicator()) : SingleChildScrollView(
           child: Column(
             children: [
               GestureDetector(
@@ -123,10 +157,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ListView.builder(
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
-                      itemCount: 8,
+                      itemCount: cateData.length>9? 9:cateData.length ,
                       itemBuilder: (BuildContext context, int index) {
                         return VeichleTypeItem(
                           viewAll: false,
+                          description: cateData[index].description,
+                          id: int.parse( cateData[index].id),
+                          image:cateData[index].featuerdImage ,name: cateData[index].name,
                         );
                       }),
                 ),
@@ -168,7 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ListView.builder(
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
-                      itemCount: 8,
+                      itemCount: recentlyAddedData.length,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (BuildContext context, int index) {
                         return VeichleRecentlyItem(false, index);

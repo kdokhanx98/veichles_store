@@ -34,7 +34,12 @@ dependencies:
   fluttertoast: ^8.0.8
   flutter_launcher_icons: ^0.9.2
   flutter_statusbarcolor_ns: ^0.3.0-nullsafety
-
+  google_fonts: 
+  flutter_svg: ^0.22.0
+  provider: ^5.0.0
+  http: ^0.13.3
+  google_maps_flutter: ^2.0.9
+  flutter_html: ^2.1.2
 flutter_icons:
   android: true
   ios: true

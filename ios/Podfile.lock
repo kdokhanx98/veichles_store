@@ -13,10 +13,26 @@ PODS:
   - fluttertoast (0.0.2):
     - Flutter
     - Toast
+  - google_maps_flutter (0.0.1):
+    - Flutter
+    - GoogleMaps
+  - GoogleMaps (5.1.0):
+    - GoogleMaps/Maps (= 5.1.0)
+  - GoogleMaps/Base (5.1.0)
+  - GoogleMaps/Maps (5.1.0):
+    - GoogleMaps/Base
   - image_picker (0.0.1):
+    - Flutter
+  - path_provider (0.0.1):
     - Flutter
   - Toast (4.0.0)
   - url_launcher (0.0.1):
+    - Flutter
+  - video_player (0.0.1):
+    - Flutter
+  - wakelock (0.0.1):
+    - Flutter
+  - webview_flutter (0.0.1):
     - Flutter
 
 DEPENDENCIES:
@@ -24,12 +40,18 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_statusbarcolor_ns (from `.symlinks/plugins/flutter_statusbarcolor_ns/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
+  - google_maps_flutter (from `.symlinks/plugins/google_maps_flutter/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
+  - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
+  - video_player (from `.symlinks/plugins/video_player/ios`)
+  - wakelock (from `.symlinks/plugins/wakelock/ios`)
+  - webview_flutter (from `.symlinks/plugins/webview_flutter/ios`)
 
 SPEC REPOS:
   trunk:
     - AppCenter
+    - GoogleMaps
     - Toast
 
 EXTERNAL SOURCES:
@@ -39,19 +61,35 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_statusbarcolor_ns/ios"
   fluttertoast:
     :path: ".symlinks/plugins/fluttertoast/ios"
+  google_maps_flutter:
+    :path: ".symlinks/plugins/google_maps_flutter/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
+  path_provider:
+    :path: ".symlinks/plugins/path_provider/ios"
   url_launcher:
     :path: ".symlinks/plugins/url_launcher/ios"
+  video_player:
+    :path: ".symlinks/plugins/video_player/ios"
+  wakelock:
+    :path: ".symlinks/plugins/wakelock/ios"
+  webview_flutter:
+    :path: ".symlinks/plugins/webview_flutter/ios"
 
 SPEC CHECKSUMS:
   AppCenter: 87ef6eefd8ade4df59e88951288587429f3dd2a5
-  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   flutter_statusbarcolor_ns: 68a360889d88d7915ae524e422aeab62e4063804
   fluttertoast: 6122fa75143e992b1d3470f61000f591a798cc58
+  google_maps_flutter: 279865bd07e2d8751f43a3bc64bac7f6075d0c93
+  GoogleMaps: 086ae1dab659eaa7339bdb30fc88e2f44e7c597c
   image_picker: e06f7a68f000bd36f552c1847e33cda96ed31f1f
+  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
+  video_player: ecd305f42e9044793efd34846e1ce64c31ea6fcb
+  wakelock: d0fc7c864128eac40eba1617cb5264d9c940b46f
+  webview_flutter: 5fb4def2bbd4339889ee14d045b605cefc5bc232
 
 PODFILE CHECKSUM: 8688274aaf9527067414cd01d9053dbf0d72392f
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:motor_bike_new/provider/content_provider.dart';
 import 'package:motor_bike_new/widgets/veichle_type_item.dart';
+import 'package:provider/provider.dart';
 
 class ViewAllCategoriesScreen extends StatefulWidget {
   const ViewAllCategoriesScreen({Key? key}) : super(key: key);
@@ -12,6 +14,8 @@ class ViewAllCategoriesScreen extends StatefulWidget {
 class _ViewAllCategoriesScreenState extends State<ViewAllCategoriesScreen> {
   @override
   Widget build(BuildContext context) {
+        final cateData = Provider.of<Contentrovider>(context, listen: false).getCatgeroyLList;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("All Categories"),
@@ -27,11 +31,17 @@ class _ViewAllCategoriesScreenState extends State<ViewAllCategoriesScreen> {
                 child: ListView.builder(
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
-                    itemCount: 6,
+                    itemCount: cateData.length,
                     physics: NeverScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
-                      return VeichleTypeItem(
-                        viewAll: true,
+                      return  Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child:VeichleTypeItem(
+                          viewAll: true,
+                          description: cateData[index].description,
+                          id: int.parse( cateData[index].id),
+                          image:cateData[index].featuerdImage ,name: cateData[index].name,
+                        ),
                       );
                     }),
               ),

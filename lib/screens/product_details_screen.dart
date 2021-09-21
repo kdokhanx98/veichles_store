@@ -1,10 +1,16 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:motor_bike_new/provider/content_provider.dart';
 import 'package:motor_bike_new/screens/contact_us_screen.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
+  final String id;
+
+  const ProductDetailsScreen({Key? key, required this.id}) : super(key: key);
   @override
   _ProductDetailsScreenState createState() => _ProductDetailsScreenState();
 }
@@ -57,8 +63,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
+        final recentlyAddedData = Provider.of<Contentrovider>(context, listen: false).getvehicleLList;
 
+    final height = MediaQuery.of(context).size.height;
+ final   itemDate =  recentlyAddedData.firstWhere((element) => element.id == widget.id);
+ financingVehiclePriceCont.text = itemDate.carleaderListingPrice!;
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -86,10 +95,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   // image slider
                   Container(
                     height: height * 0.3,
-                    child: PageView.builder(
+                    child:itemDate.image!.length!=0? PageView.builder(
                       itemBuilder: (context, index) {
-                        return Image.asset(
-                          'assets/2a.jpg',
+                        return Image.network(
+                          itemDate.image![index],
                           fit: BoxFit.cover,
                         );
                       },
@@ -99,7 +108,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         position = index;
                         setState(() {});
                       },
-                    ),
+                    ): Image.asset(
+                          'assets/2a.jpg',
+                          fit: BoxFit.cover,
+                        ),
                   ),
                   // product info
                   Padding(
@@ -112,7 +124,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           children: <Widget>[
                             Expanded(
                               child: Text(
-                                "2019 Ford TurtleTop Vanterra Non-CDL Executive Coach",
+                                itemDate.title!,
                                 style: TextStyle(
                                     color: Color(0xFF212121), fontSize: 18),
                                 maxLines: 2,
@@ -131,7 +143,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      "\$87,900",
+                                      "\$${itemDate.carleaderListingPrice}",
                                       style: TextStyle(
                                           color: Colors.grey.shade800,
                                           fontSize: 20),
@@ -173,7 +185,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                         ),
                                         Padding(
                                             padding: EdgeInsets.only(top: 5),
-                                            child: Text("2019",
+                                            child: Text(itemDate.yser!,
                                                 style: TextStyle(
                                                     fontSize: 13,
                                                     fontWeight: FontWeight.bold,
@@ -212,7 +224,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                           ),
                                           Padding(
                                               padding: EdgeInsets.only(top: 5),
-                                              child: Text(" 1235 mi.",
+                                              child: Text(" ${itemDate.carleaderListingMiles} mi.",
                                                   style: TextStyle(
                                                       fontSize: 13,
                                                       fontWeight:
@@ -251,7 +263,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                           ),
                                           Padding(
                                               padding: EdgeInsets.only(top: 5),
-                                              child: Text("Gasoline",
+                                              child: Text(itemDate.carleaderListingEngineflue!,
                                                   style: TextStyle(
                                                       fontSize: 13,
                                                       fontWeight:
@@ -285,7 +297,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                         ),
                                         Padding(
                                             padding: EdgeInsets.only(top: 5),
-                                            child: Text("Automatic",
+                                            child: Text(itemDate.carleaderListingModelTransmissionType!,
                                                 style: TextStyle(
                                                     fontSize: 13,
                                                     fontWeight: FontWeight.bold,
@@ -308,11 +320,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           Stack(
                             alignment: Alignment.bottomRight,
                             children: <Widget>[
-                              Text(
-                                "Brand NEW 2019 Leftover Tutleop Vanterra (AKA The Sprinter Killer!) Non-CDL Executive Seating for 13 + Driver TV, Woodlock Flooring, Large Front View Window, & Rear Luggage Financing Available",
-                                maxLines: 8,
-                                style: TextStyle(fontSize: 16),
-                              ), //isExpanded
+                              Html(
+  data:itemDate.content
+) //isExpanded
                             ],
                           ),
                           SizedBox(height: 10),
@@ -343,7 +353,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                             top: 4, bottom: 4, left: 24),
                                         color: Color(0xFFF8F8F8),
                                         child: Text(
-                                          "Executive Coach",
+                                         itemDate.metaBodyTitle!,
                                           style: TextStyle(
                                               color: Color(0xFF212121),
                                               fontSize: 18),
@@ -378,7 +388,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                             top: 4, bottom: 4, left: 24),
                                         color: Color(0xFFF8F8F8),
                                         child: Text(
-                                          "2019",
+                                          itemDate.yser!,
                                           style: TextStyle(
                                               color: Color(0xFF212121),
                                               fontSize: 18),
@@ -413,7 +423,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                             top: 4, bottom: 4, left: 24),
                                         color: Color(0xFFF8F8F8),
                                         child: Text(
-                                          "Gasoline",
+                                         itemDate.carleaderListingEngineflue!,
                                           style: TextStyle(
                                               color: Color(0xFF212121),
                                               fontSize: 18),
@@ -483,7 +493,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                             top: 4, bottom: 4, left: 24),
                                         color: Color(0xFFF8F8F8),
                                         child: Text(
-                                          "Automatice",
+                                          itemDate.carleaderListingModelTransmissionType!,
                                           style: TextStyle(
                                               color: Color(0xFF212121),
                                               fontSize: 18),
@@ -518,7 +528,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                             top: 4, bottom: 4, left: 24),
                                         color: Color(0xFFF8F8F8),
                                         child: Text(
-                                          "Black",
+                                          itemDate.carleaderListingColor!,
                                           style: TextStyle(
                                               color: Color(0xFF212121),
                                               fontSize: 18),
@@ -553,7 +563,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                             top: 4, bottom: 4, left: 24),
                                         color: Color(0xFFF8F8F8),
                                         child: Text(
-                                          "Black",
+                                          itemDate.interiorColor!,
                                           style: TextStyle(
                                               color: Color(0xFF212121),
                                               fontSize: 18),
@@ -588,7 +598,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                             top: 4, bottom: 4, left: 24),
                                         color: Color(0xFFF8F8F8),
                                         child: Text(
-                                          "1FDWE3FS6KDC",
+                                         itemDate.carleaderListingVin!,
                                           style: TextStyle(
                                               color: Color(0xFF212121),
                                               fontSize: 18),
@@ -623,7 +633,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                             top: 4, bottom: 4, left: 24),
                                         color: Color(0xFFF8F8F8),
                                         child: Text(
-                                          "Gas",
+                                          itemDate.carleaderListingEngine!,
                                           style: TextStyle(
                                               color: Color(0xFF212121),
                                               fontSize: 18),
@@ -693,7 +703,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                             top: 4, bottom: 4, left: 24),
                                         color: Color(0xFFF8F8F8),
                                         child: Text(
-                                          "Simulators",
+                                          itemDate.carleaderListingWheels!,
                                           style: TextStyle(
                                               color: Color(0xFF212121),
                                               fontSize: 18),
