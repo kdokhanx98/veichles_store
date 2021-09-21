@@ -39,6 +39,7 @@ dependencies:
   provider: ^5.0.0
   http: ^0.13.3
   google_maps_flutter: ^2.0.9
+  geolocator: ^7.6.2
   flutter_html: ^2.1.2
 flutter_icons:
   android: true

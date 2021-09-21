@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:motor_bike_new/screens/forget_password_screen.dart';
+import 'package:motor_bike_new/screens/main_screen.dart';
 import 'package:motor_bike_new/screens/register_screen.dart';
 
 import '../constants.dart';
@@ -146,6 +147,7 @@ class LoginScreen extends StatelessWidget {
     Spacer(),
              GestureDetector(
                           onTap: () {
+                            Navigator.of(context).pushNamed(MainScreen.routeName);
                           },
                           child: Container(
                             width: size.width * 0.9,

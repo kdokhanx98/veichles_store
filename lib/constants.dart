@@ -15,6 +15,7 @@ const kgreyText = Color(0xFFF666666);
 const kgreyText1 = Color(0xFFF999999);
 const kblackText = Color(0xFFF333333);
 
+  Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
 
 
 

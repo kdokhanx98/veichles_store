@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:motor_bike_new/screens/account_screen.dart';
 import 'package:motor_bike_new/screens/contact_details_screen.dart';
 import 'package:motor_bike_new/screens/contact_us_screen.dart';
 import 'package:motor_bike_new/screens/faq_screen.dart';
@@ -15,7 +16,7 @@ import 'dart:io' show Platform;
 import 'my_listings.dart';
 
 class MainScreen extends StatefulWidget {
-  static const routeName = '/';
+  static const routeName = '/MainScreen';
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -76,7 +77,12 @@ class _MainScreenState extends State<MainScreen> {
             ),
             getDrawerItem(Icons.account_circle_outlined, "Account",
                 callback: () {
+                                Navigator.popAndPushNamed(context, AccountScreen.routeName);
+
               print("account clicked");
+            }),
+             getDrawerItem(Icons.help_outline, "My Listings", callback: () {
+              Navigator.popAndPushNamed(context, MyListingsScreen.routeName);
             }),
             getDrawerItem(
                 Icons.notification_important_outlined, "Notifications",
@@ -91,15 +97,12 @@ class _MainScreenState extends State<MainScreen> {
                 callback: () {
               Navigator.popAndPushNamed(context, ContactDetails.routeName);
             }),
+           
+           
             getDrawerItem(Icons.help_outline, "FAQ", callback: () {
               Navigator.popAndPushNamed(context, FAQScreen.routeName);
             }),
-            getDrawerItem(Icons.help_outline, "FAQ", callback: () {
-              Navigator.popAndPushNamed(context, FAQScreen.routeName);
-            }),
-            getDrawerItem(Icons.help_outline, "My Listings", callback: () {
-              Navigator.popAndPushNamed(context, MyListingsScreen.routeName);
-            }),
+          
             SizedBox(height: height * 0.2),
             Center(
               child: Column(

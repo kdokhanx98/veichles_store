@@ -11,6 +11,18 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
+	<key>NSLocationWhenInUseUsageDescription</key>
+<string>This app needs access to location when open.</string>
+<key>NSLocationAlwaysUsageDescription</key>
+<string>This app needs access to location when in the background.</string>
+
+<key>NSLocationTemporaryUsageDescriptionDictionary</key>
+<dict>
+  <key>AIzaSyDuvKjR_UiGlyNhUryUHiIzJ9inbecS7F4</key>
+  <string>The example App requires temporary access to the device&apos;s precise location.</string>
+</dict>
+
+
 	<string>ARS</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>

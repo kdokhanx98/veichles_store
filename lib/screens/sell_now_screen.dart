@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:motor_bike_new/constants.dart';
+import 'package:motor_bike_new/provider/content_provider.dart';
 import 'package:motor_bike_new/screens/location_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:provider/provider.dart';
 
 class SellScreen extends StatefulWidget {
   static const routeName = '/sell';
@@ -14,6 +16,8 @@ class SellScreen extends StatefulWidget {
   @override
   _SellScreenState createState() => _SellScreenState();
 }
+
+
 
 class _SellScreenState extends State<SellScreen> {
   var locationController = TextEditingController();
@@ -91,8 +95,9 @@ class _SellScreenState extends State<SellScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if(locationPosition!=null)
-    locationController.text = locationPosition.toString();
+final location = Provider.of<Contentrovider>(context).location;
+ if(location!=null)
+    locationController.text = location;   
     final height = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
@@ -333,7 +338,7 @@ class _SellScreenState extends State<SellScreen> {
                     controller: locationController,
                     decoration: InputDecoration(
                         isDense: true,
-                        hintText: "Pick location on map",
+                        hintText:  "Pick location on map",
                         hintStyle: TextStyle(color: Colors.grey),
                         filled: true,
                         fillColor: Colors.white,

@@ -1,7 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:motor_bike_new/constants.dart';
+import 'package:motor_bike_new/provider/content_provider.dart';
+import 'package:motor_bike_new/screens/sell_now_screen.dart';
+import 'package:provider/provider.dart';
 
 const kGoogleApiKey = "AIzaSyDuvKjR_UiGlyNhUryUHiIzJ9inbecS7F4";
 
@@ -26,6 +30,14 @@ class _GetLocationState extends State<GetLocation> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+    floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+
+       floatingActionButton: FloatingActionButton.extended(
+        onPressed: _goToTheLake,
+        label: Text('My Loction!'),
+        icon: Icon(Icons.location_on),
+      ),
+
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
         leading: IconButton(
@@ -64,8 +76,8 @@ class _GetLocationState extends State<GetLocation> {
       children: <Widget>[
         _searchbar(),
         _buildGoogleMap(context),
-        _zoomminusfunction(),
-        _zoomplusfunction(),
+  //      _zoomminusfunction(),
+    //    _zoomplusfunction(),
       ],
     ),
   ),
@@ -75,7 +87,11 @@ class _GetLocationState extends State<GetLocation> {
   getUserLocation() async {
     markers.values.forEach((value) async {
   print(value.position);
-    locationPosition =value.position;
+  setState(() {
+    Provider.of<Contentrovider>(context, listen: false).changeData(value.position.toString()) ;
+        locationPosition =value.position;
+
+  });
  
     Navigator.of(context).pop();
     });
@@ -117,13 +133,15 @@ final GoogleMapController controller = await _controller.future;
     CameraPosition(target: LatLng(40.712776, -74.005974), zoom: zoomVal)));
   }
 
-  Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
 
   Widget _buildGoogleMap(BuildContext context) {
     return Container(
   height: MediaQuery.of(context).size.height,
   width: MediaQuery.of(context).size.width,
   child: GoogleMap(
+    myLocationEnabled: true,
+    myLocationButtonEnabled: true,
+
     mapType: MapType.normal,
     initialCameraPosition:
         CameraPosition(target: LatLng(40.712776, -74.005974), zoom: 12),
@@ -131,7 +149,7 @@ final GoogleMapController controller = await _controller.future;
       _controller.complete(controller);
     },
     markers: Set<Marker>.of(markers.values),
-    onLongPress: (LatLng latLng) {
+    onTap: (LatLng latLng) {
       // creating a new MARKER
       final MarkerId markerId = MarkerId('4544');
       final Marker marker = Marker(
@@ -149,6 +167,16 @@ final GoogleMapController controller = await _controller.future;
     );
   }
 
+  Future<void> _goToTheLake() async {
+    final GoogleMapController controller = await _controller.future;
+    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+   CameraPosition _kLake = CameraPosition(
+      bearing: 192.8334901395799,
+      target: LatLng(position.latitude, position.longitude),
+      zoom: 19.151926040649414);
+    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+  }
+  
   Widget _searchbar() {
 return Positioned(
   top: 50.0,

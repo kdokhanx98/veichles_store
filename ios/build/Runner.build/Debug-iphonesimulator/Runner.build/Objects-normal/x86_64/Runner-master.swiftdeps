@@ -1,0 +1,5 @@
+version: "Apple Swift version 5.4.2 (swiftlang-1205.0.28.2 clang-1205.0.19.57)"
+options: "bdf6a5ee7ee824cd2301e24485ec7006"
+build_time: [1632237063, 153153000]
+inputs:
+  "/Users/ashourofficiall/Devoloper/apps/veichles_store/ios/Runner/AppDelegate.swift": !dirty [1632228736, 634367947]

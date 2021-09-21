@@ -14,6 +14,13 @@ class Contentrovider with ChangeNotifier {
     return [..._vehicleList];
   }
 
+
+   String? location;
+
+   changeData(String newData){
+      location = newData;
+      notifyListeners();
+   }
   List<Catgeroy> _catgeroyList = [];
   List<Catgeroy> get getCatgeroyLList {
     return [..._catgeroyList];

@@ -17,6 +17,7 @@ import 'package:motor_bike_new/screens/vehicle_detail.dart';
 import 'package:provider/provider.dart';
 import 'provider/auth_provider.dart';
 import 'provider/content_provider.dart';
+import 'screens/account_screen.dart';
 import 'screens/location_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/my_listings.dart';
@@ -66,12 +67,13 @@ class _MyAppState extends State<MyApp> {
     
           )
         ),
+        home: LoginScreen(),
         routes: {
           ForgetPasswordScreen.routeName: (context) => ForgetPasswordScreen(),
           LoginScreen.routeName: (context) => LoginScreen(),
           RegisterScreen.routeName: (context) => RegisterScreen(),
           HomeScreen.routeName: (context) => HomeScreen(),
-          "/": (context) => MainScreen(),
+          MainScreen.routeName: (context) => MainScreen(),
           FavouriteScreen.routeName: (context) => FavouriteScreen(),
           SearchScreen.routeName: (context) => SearchScreen(),
           SellScreen.routeName: (context) => SellScreen(),
@@ -83,6 +85,7 @@ class _MyAppState extends State<MyApp> {
           FAQScreen.routeName: (context) => FAQScreen(),
           GetLocation.routeName: (context) => GetLocation(),
           MyListingsScreen.routeName: (context) => MyListingsScreen(),
+          AccountScreen.routeName: (context) => AccountScreen(),
         },
       ),
     );
