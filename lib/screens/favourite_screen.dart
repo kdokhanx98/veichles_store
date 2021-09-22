@@ -9,7 +9,8 @@ class FavouriteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-        final recentlyAddedData = Provider.of<Contentrovider>(context, listen: false).getvehicleLList;
+    final recentlyAddedData =
+        Provider.of<Contentrovider>(context, listen: false).getvehicleLList;
 
     return Scaffold(
       appBar: AppBar(
@@ -17,16 +18,22 @@ class FavouriteScreen extends StatelessWidget {
         title: Text("Favorites"),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(bottom: 15.0),
-        child: Container(
-          child: ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.vertical,
-              itemCount: recentlyAddedData.length,
-              physics: NeverScrollableScrollPhysics(),
-              itemBuilder: (BuildContext context, int index) {
-                return VeichleRecentlyItem(true, index);
-              }),
+        padding: const EdgeInsets.only(bottom: 40.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    itemCount: recentlyAddedData.length,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (BuildContext context, int index) {
+                      return VeichleRecentlyItem(true, index);
+                    }),
+              ),
+            ],
+          ),
         ),
       ),
     );

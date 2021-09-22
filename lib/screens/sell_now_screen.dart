@@ -4,7 +4,6 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:motor_bike_new/constants.dart';
 import 'package:motor_bike_new/provider/content_provider.dart';
 import 'package:motor_bike_new/screens/location_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -17,15 +16,13 @@ class SellScreen extends StatefulWidget {
   _SellScreenState createState() => _SellScreenState();
 }
 
-
-
 class _SellScreenState extends State<SellScreen> {
   var locationController = TextEditingController();
   var priceController = TextEditingController();
   var makeController = TextEditingController();
   var mileageController = TextEditingController();
   var descriptionController = TextEditingController();
-  
+
   List<XFile>? selectedPics = [];
   final ImagePicker _picker = ImagePicker();
   bool isEmpty = true;
@@ -91,13 +88,10 @@ class _SellScreenState extends State<SellScreen> {
     "2021",
   ];
 
-
-
   @override
   Widget build(BuildContext context) {
-final location = Provider.of<Contentrovider>(context).location;
- if(location!=null)
-    locationController.text = location;   
+    final location = Provider.of<Contentrovider>(context).location;
+    if (location != null) locationController.text = location;
     final height = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
@@ -107,7 +101,7 @@ final location = Provider.of<Contentrovider>(context).location;
       body: SingleChildScrollView(
         child: Column(
           children: [
-            selectedPics!.length==0
+            selectedPics == null || selectedPics!.length == 0
                 ? GestureDetector(
                     onTap: () {
                       print("clicked");
@@ -150,22 +144,19 @@ final location = Provider.of<Contentrovider>(context).location;
                           itemBuilder: (BuildContext context, int index) {
                             return Center(
                                 child: Stack(
-      children: [
-
-        Image.file(File(selectedPics![index].path),
+                              children: [
+                                Image.file(File(selectedPics![index].path),
                                     fit: BoxFit.cover),
-                                    Positioned(child: GestureDetector(
-                                      onTap: (){
-                                        setState(() {
-                                          selectedPics!.removeAt(index);
-                                        });
-                                      },
-                                      child: Icon(Icons.cancel))),
-
-
-      ],
-      
-    ));
+                                Positioned(
+                                    child: GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            selectedPics!.removeAt(index);
+                                          });
+                                        },
+                                        child: Icon(Icons.cancel))),
+                              ],
+                            ));
                           }),
                     ),
                   ),
@@ -326,19 +317,20 @@ final location = Provider.of<Contentrovider>(context).location;
                     onTap: () {
                       print("show map");
                       pushNewScreen(
-        context,
-        screen: GetLocation(),
-        withNavBar: false, // OPTIONAL VALUE. True by default.
-        pageTransitionAnimation: PageTransitionAnimation.cupertino,
-    );
-    
-                       //   Navigator.of(context).pushNamed(GetLocation.routeName);
+                        context,
+                        screen: GetLocation(),
+                        withNavBar: false, // OPTIONAL VALUE. True by default.
+                        pageTransitionAnimation:
+                            PageTransitionAnimation.cupertino,
+                      );
+
+                      //   Navigator.of(context).pushNamed(GetLocation.routeName);
                     },
                     readOnly: true,
                     controller: locationController,
                     decoration: InputDecoration(
                         isDense: true,
-                        hintText:  "Pick location on map",
+                        hintText: "Pick location on map",
                         hintStyle: TextStyle(color: Colors.grey),
                         filled: true,
                         fillColor: Colors.white,
@@ -1027,7 +1019,6 @@ final location = Provider.of<Contentrovider>(context).location;
     if (selectedPics != null) {
       print(selectedPics);
       setState(() {
-
         if (selectedPics!.isNotEmpty) {
           isEmpty = false;
         }

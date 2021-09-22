@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:motor_bike_new/provider/content_provider.dart';
 import 'package:motor_bike_new/widgets/my_list_item.dart';
@@ -11,7 +10,8 @@ class MyListingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-            final recentlyAddedData = Provider.of<Contentrovider>(context, listen: false).getvehicleLList;
+    final recentlyAddedData =
+        Provider.of<Contentrovider>(context, listen: false).getvehicleLList;
 
     return Scaffold(
       appBar: AppBar(
@@ -20,15 +20,21 @@ class MyListingsScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.only(bottom: 15.0),
-        child: Container(
-          child: ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.vertical,
-              itemCount: recentlyAddedData.length,
-              physics: NeverScrollableScrollPhysics(),
-              itemBuilder: (BuildContext context, int index) {
-                return MyListItem(true, index);
-              }),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    itemCount: recentlyAddedData.length,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (BuildContext context, int index) {
+                      return MyListItem(true, index);
+                    }),
+              ),
+            ],
+          ),
         ),
       ),
     );

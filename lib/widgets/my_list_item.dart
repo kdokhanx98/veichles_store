@@ -12,7 +12,8 @@ class MyListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.width;
-    final recentlyAddedData = Provider.of<Contentrovider>(context, listen: false).getvehicleLList;
+    final recentlyAddedData =
+        Provider.of<Contentrovider>(context, listen: false).getvehicleLList;
 
     return InkWell(
       onTap: () {
@@ -46,17 +47,16 @@ class MyListItem extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(8.0),
                         bottomLeft: Radius.circular(8.0)),
-                    child: recentlyAddedData[index].image!.length==0?  Image.asset("assets/image_placeholder.jpg",
-                        fit: BoxFit.cover,
-                        height: width * 0.35,
-                        width: width * 0.29) :Image.network(recentlyAddedData[index].image![0],
-                        fit: BoxFit.cover,
-                        height: width * 0.35,
-                        width: width * 0.29),
-                  )
-                  
-                  ),
-                  
+                    child: recentlyAddedData[index].image!.length == 0
+                        ? Image.asset("assets/image_placeholder.jpg",
+                            fit: BoxFit.cover,
+                            height: width * 0.35,
+                            width: width * 0.29)
+                        : Image.network(recentlyAddedData[index].image![0],
+                            fit: BoxFit.cover,
+                            height: width * 0.35,
+                            width: width * 0.29),
+                  )),
               SizedBox(width: width * 0.015),
               Expanded(
                 child: Column(
@@ -104,16 +104,17 @@ class MyListItem extends StatelessWidget {
                               style: TextStyle(
                                   color: Colors.grey.shade800, fontSize: 16),
                             ),
-
                             Padding(
-                              padding: const EdgeInsets.only(right: 4),
+                              padding: const EdgeInsets.only(right: 8),
                               child: Column(
                                 children: [
-                                  Icon(Icons.delete , color: Colors.red,),
-                                                          SizedBox(height: height * 0.02),
-
-                                                                  Icon(Icons.soap_outlined , color: Colors.yellowAccent,),
-
+                                  Icon(
+                                    Icons.delete,
+                                    color: Colors.red,
+                                  ),
+                                  SizedBox(height: height * 0.02),
+                                  Icon(Icons.soap_outlined,
+                                      color: Colors.yellow.shade800),
                                 ],
                               ),
                             ),
@@ -140,7 +141,9 @@ class MyListItem extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                               recentlyAddedData[index].carleaderListingMiles!+"mi",
+                                recentlyAddedData[index]
+                                        .carleaderListingMiles! +
+                                    "mi",
                                 style: TextStyle(
                                   color: Colors.grey.shade500,
                                   fontSize: 14,
@@ -154,7 +157,8 @@ class MyListItem extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                recentlyAddedData[index].carleaderListingEngineflue!,
+                                recentlyAddedData[index]
+                                    .carleaderListingEngineflue!,
                                 style: TextStyle(
                                   color: Colors.grey.shade500,
                                   fontSize: 14,

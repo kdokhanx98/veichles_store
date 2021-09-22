@@ -45,7 +45,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-        statusBarColor: Colors.white, // Color for Android
+        statusBarColor: Color(0xff00B241), // Color for Android
+        statusBarIconBrightness: Brightness.light,
         statusBarBrightness:
             Brightness.dark // Dark == white status bar -- for IOS.
         ));
@@ -58,16 +59,11 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         title: 'ARS',
         theme: ThemeData(
-          primarySwatch: Colors.blueGrey,
-          appBarTheme: AppBarTheme(
-            backwardsCompatibility: false,
-            systemOverlayStyle: SystemUiOverlayStyle.light,
-            brightness: Brightness.light,
-    
-          )
-        ),
+            primarySwatch: Colors.blueGrey,
+            appBarTheme: AppBarTheme(
+              backwardsCompatibility: false,
+            )),
         home: LoginScreen(),
-
         routes: {
           ForgetPasswordScreen.routeName: (context) => ForgetPasswordScreen(),
           LoginScreen.routeName: (context) => LoginScreen(),

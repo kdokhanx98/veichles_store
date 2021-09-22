@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
@@ -10,7 +9,8 @@
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>CFBundleName</key>
+
+
 	<key>NSLocationWhenInUseUsageDescription</key>
 <string>This app needs access to location when open.</string>
 <key>NSLocationAlwaysUsageDescription</key>
@@ -22,7 +22,7 @@
   <string>The example App requires temporary access to the device&apos;s precise location.</string>
 </dict>
 
-
+	<key>CFBundleName</key>
 	<string>ARS</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
