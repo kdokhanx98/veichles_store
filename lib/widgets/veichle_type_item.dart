@@ -73,7 +73,7 @@ class VeichleTypeItem extends StatelessWidget {
                           )
                         : Container(
                             width: width * 0.35,
-                            height: height * 0.12,
+                            height: height * 0.11,
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 fit: BoxFit.cover,

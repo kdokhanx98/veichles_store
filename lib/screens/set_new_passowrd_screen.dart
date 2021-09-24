@@ -28,7 +28,6 @@ class SetNewPasswordScreen extends StatelessWidget {
     if (isValid) {
       Provider.of<AuthProvider>(context, listen: false)
           .postSetNewPassword(
-            email: emailControl.text,
             code:codeControl.text ,password: passwordControl.text
             //   context: context
           )
@@ -64,7 +63,7 @@ class SetNewPasswordScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Text(
-                "Please enter a new code and password",
+                "Please enter a code and new password",
                 style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
               ),
             ),
@@ -78,100 +77,7 @@ class SetNewPasswordScreen extends StatelessWidget {
                 child: Column(
                   children: [
                 
-                     Container(
-                      width: size.width,
-                      height: size.height * 0.09,
-                      decoration: BoxDecoration(
-                        color: kBackgroundColor,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: size.width * 0.03,
-                          ),
-                          Icon(
-                            Icons.email_outlined,
-                            color: kgaryColor,
-                            size: 25,
-                          ),
-                          SizedBox(
-                            width: size.width * 0.02,
-                          ),
-                          Expanded(
-                            child: TextFormField(
-                                textCapitalization: TextCapitalization.words,
-                                obscureText: false,
-                                onFieldSubmitted: (term) {},
-                                controller: emailControl,
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.all(0.0),
-                                  border: InputBorder.none,
-                                  hintText: "Email Address",
-                                ),
-                                validator: (value) {
-                                  if (isValidEmail(value!) == false ||
-                                      (value.length < 255) == false ||
-                                      value.isEmpty) {
-                                    return 'Please enter a valid email';
-                                  }
-                                  return null;
-                                }),
-                          ),
-                        ],
-                      ),
-                    ),
-                  
-       SizedBox(
-              height: size.height * 0.02,
-            ),
-                     Container(
-                      width: size.width,
-                      height: size.height * 0.09,
-                      decoration: BoxDecoration(
-                        color: kBackgroundColor,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: size.width * 0.03,
-                          ),
-                          Icon(
-                            Icons.email_outlined,
-                            color: kgaryColor,
-                            size: 25,
-                          ),
-                          SizedBox(
-                            width: size.width * 0.02,
-                          ),
-                          Expanded(
-                            child: TextFormField(
-                                textCapitalization: TextCapitalization.words,
-                                obscureText: false,
-                                onFieldSubmitted: (term) {},
-                                controller: codeControl,
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.all(0.0),
-                                  border: InputBorder.none,
-                                  hintText: "Code",
-                                ),
-                                validator: (value) {
-                                  if (isValidEmail(value!) == false ||
-                                      (value.length < 255) == false ||
-                                      value.isEmpty) {
-                                    return 'Please enter a valid email';
-                                  }
-                                  return null;
-                                }),
-                          ),
-                        ],
-                      ),
-                    ),
-                  
-       SizedBox(
-              height: size.height * 0.02,
-            ),
+      
    Container(
                       width: size.width,
                       height: size.height * 0.09,
@@ -261,13 +167,60 @@ class SetNewPasswordScreen extends StatelessWidget {
                       ),
                     ),
                 
-              
+               SizedBox(
+              height: size.height * 0.02,
+            ),
+
+                     Container(
+                      width: size.width,
+                      height: size.height * 0.09,
+                      decoration: BoxDecoration(
+                        color: kBackgroundColor,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: size.width * 0.03,
+                          ),
+                          Icon(
+                            Icons.email_outlined,
+                            color: kgaryColor,
+                            size: 25,
+                          ),
+                          SizedBox(
+                            width: size.width * 0.02,
+                          ),
+                          Expanded(
+                            child: TextFormField(
+                                textCapitalization: TextCapitalization.words,
+                                obscureText: false,
+                                onFieldSubmitted: (term) {},
+                                controller: codeControl,
+                                decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.all(0.0),
+                                  border: InputBorder.none,
+                                  hintText: "Code",
+                                ),
+                                validator: (value) {
+                                  if (isValidEmail(value!) == false ||
+                                      (value.length < 255) == false ||
+                                      value.isEmpty) {
+                                    return 'Please enter a valid email';
+                                  }
+                                  return null;
+                                }),
+                          ),
+                        ],
+                      ),
+                    ),
+                  
                   ],
                 ),
               ),
             ),
             SizedBox(
-                            height: size.height * 0.2,
+                            height: size.height * 0.3,
                           ),
              GestureDetector(
                           onTap: () {
@@ -281,7 +234,7 @@ class SetNewPasswordScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10)),
                             child: Center(
                               child: Text(
-                                "Send",
+                                "Reset",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 17,

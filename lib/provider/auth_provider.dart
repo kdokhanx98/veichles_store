@@ -8,6 +8,7 @@ import '../api_url.dart';
 
 class AuthProvider with ChangeNotifier {
   String? token;
+  String? forgetEmail;
   User? user;
   Future<void> getToken() async {
     // check if Token avilable
@@ -135,6 +136,7 @@ Fluttertoast.showToast(
 
     return false;
       }else{
+        forgetEmail = email;
           String masg = responseData["message"];
 Fluttertoast.showToast(
         msg: masg,
@@ -164,13 +166,13 @@ Fluttertoast.showToast(
   }
 
   Future<bool> postSetNewPassword(
-      {String? email, password , code}) async {
+      {String? password , code}) async {
     // check if Token avilable
 
     final url = Uri.parse(postSetNewPasswordUrl);
 
     Map<String, String> userData = {
-      "email": email!,
+      "email": forgetEmail!,
       "password": password!,
       "code": code!,
     };
