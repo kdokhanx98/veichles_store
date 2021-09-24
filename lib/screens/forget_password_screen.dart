@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:motor_bike_new/provider/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../constants.dart';
+import 'set_new_passowrd_screen.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
     static const routeName = '/ForgetPasswordScreen';
@@ -8,6 +11,30 @@ class ForgetPasswordScreen extends StatelessWidget {
   GlobalKey<FormState> formKey = GlobalKey();
   TextEditingController emailControl = TextEditingController();
 
+  saveForm(BuildContext context) {
+    print('icslck');
+
+    final isValid = formKey.currentState!.validate();
+    if (!isValid) {
+      print('inVaild');
+      return;
+    }
+    formKey.currentState!.save();
+    print("aaaaa");
+
+    if (isValid) {
+      Provider.of<AuthProvider>(context, listen: false)
+          .postForgetPassword(
+            email: emailControl.text,
+            //   context: context
+          )
+          .then((value) {
+            if(value)
+            Navigator.of(context).pushNamed(SetNewPasswordScreen.routeName,);
+          });
+    }
+  }
+  
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -99,6 +126,7 @@ class ForgetPasswordScreen extends StatelessWidget {
     Spacer(),
              GestureDetector(
                           onTap: () {
+                            saveForm(context);
                           },
                           child: Container(
                             width: size.width * 0.9,

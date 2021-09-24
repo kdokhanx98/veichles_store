@@ -1,44 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:motor_bike_new/provider/auth_provider.dart';
-import 'package:motor_bike_new/provider/content_provider.dart';
-import 'package:motor_bike_new/screens/login_screen.dart';
 import 'package:motor_bike_new/screens/main_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../constants.dart';
 
-class RegisterScreen extends StatefulWidget {
-  static const routeName = '/RegisterScreen';
+class SetNewPasswordScreen extends StatelessWidget {
+    static const routeName = '/SetNewPasswordScreen';
 
-  @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
-}
-
-class _RegisterScreenState extends State<RegisterScreen> {
   GlobalKey<FormState> formKey = GlobalKey();
-
   TextEditingController emailControl = TextEditingController();
-
-  TextEditingController firstNameControl = TextEditingController();
-
-  TextEditingController lastNameControl = TextEditingController();
-
+  TextEditingController codeControl = TextEditingController();
   TextEditingController passwordControl = TextEditingController();
-
-  TextEditingController confPasswordControl = TextEditingController();
-
-  var isInit = true;
-
-  var loading = true;
-
-  @override
-  void didChangeDependencies() {
-    if (isInit) {
-      final authProvider = Provider.of<AuthProvider>(context, listen: false);
-      authProvider.getToken();
-      super.didChangeDependencies();
-    }
-  }
+  TextEditingController confirmPasswordControl = TextEditingController();
 
   saveForm(BuildContext context) {
     print('icslck');
@@ -53,11 +27,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     if (isValid) {
       Provider.of<AuthProvider>(context, listen: false)
-          .postRegister(
+          .postSetNewPassword(
             email: emailControl.text,
-            password: passwordControl.text,
-            firstName: firstNameControl.text, userName: emailControl.text,
-            lastName: lastNameControl.text,
+            code:codeControl.text ,password: passwordControl.text
             //   context: context
           )
           .then((value) {
@@ -66,29 +38,38 @@ class _RegisterScreenState extends State<RegisterScreen> {
           });
     }
   }
-
+  
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text("Set New Password" , style: TextStyle(color: Colors.black),),
+        elevation: 0.0,
+        leading: IconButton(
+         icon: Icon(Icons.arrow_back_ios_new , color: Colors.black,),
+         onPressed: ()=>Navigator.of(context).pop(), 
+        ),
+      ),
       backgroundColor: Colors.white,
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: size.height * 0.1,
-            ),
-            Image.asset('assets/ars_logo.jpg'),
-            SizedBox(
               height: size.height * 0.03,
             ),
-            Text(
-              "Sign up",
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Text(
+                "Please enter a new code and password",
+                style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+              ),
             ),
-            SizedBox(
-              height: size.height * 0.04,
+             SizedBox(
+              height: size.height * 0.02,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10, right: 15, left: 15),
@@ -96,103 +77,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 key: formKey,
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        Container(
-                          width: size.width * 0.44,
-                          height: size.height * 0.09,
-                          decoration: BoxDecoration(
-                            color: kBackgroundColor,
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: size.width * 0.03,
-                              ),
-                              Icon(
-                                Icons.person,
-                                color: kgaryColor,
-                                size: 25,
-                              ),
-                              SizedBox(
-                                width: size.width * 0.02,
-                              ),
-                              Expanded(
-                                child: TextFormField(
-                                    textCapitalization:
-                                        TextCapitalization.words,
-                                    obscureText: false,
-                                    onFieldSubmitted: (term) {},
-                                    controller: firstNameControl,
-                                    decoration: InputDecoration(
-                                      contentPadding: EdgeInsets.all(0.0),
-                                      border: InputBorder.none,
-                                      hintText: "First Name",
-                                    ),
-                                    validator: (value) {
-                                      if ((value!.length < 255) == false ||
-                                          value.isEmpty) {
-                                        return 'Please enter a valid name';
-                                      }
-                                      return null;
-                                    }),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          width: size.width * 0.03,
-                        ),
-                        Container(
-                          width: size.width * 0.45,
-                          height: size.height * 0.09,
-                          decoration: BoxDecoration(
-                            color: kBackgroundColor,
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: size.width * 0.03,
-                              ),
-                              Icon(
-                                Icons.person,
-                                color: kgaryColor,
-                                size: 25,
-                              ),
-                              SizedBox(
-                                width: size.width * 0.02,
-                              ),
-                              Expanded(
-                                child: TextFormField(
-                                    textCapitalization:
-                                        TextCapitalization.words,
-                                    obscureText: false,
-                                    onFieldSubmitted: (term) {},
-                                    controller: lastNameControl,
-                                    decoration: InputDecoration(
-                                      contentPadding: EdgeInsets.all(0.0),
-                                      border: InputBorder.none,
-                                      hintText: "Last Name",
-                                    ),
-                                    validator: (value) {
-                                      if ((value!.length < 255) == false ||
-                                          value.isEmpty) {
-                                        return 'Please enter a valid name';
-                                      }
-                                      return null;
-                                    }),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: size.height * 0.02,
-                    ),
-                    Container(
+                
+                     Container(
                       width: size.width,
                       height: size.height * 0.09,
                       decoration: BoxDecoration(
@@ -235,10 +121,58 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: size.height * 0.02,
+                  
+       SizedBox(
+              height: size.height * 0.02,
+            ),
+                     Container(
+                      width: size.width,
+                      height: size.height * 0.09,
+                      decoration: BoxDecoration(
+                        color: kBackgroundColor,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: size.width * 0.03,
+                          ),
+                          Icon(
+                            Icons.email_outlined,
+                            color: kgaryColor,
+                            size: 25,
+                          ),
+                          SizedBox(
+                            width: size.width * 0.02,
+                          ),
+                          Expanded(
+                            child: TextFormField(
+                                textCapitalization: TextCapitalization.words,
+                                obscureText: false,
+                                onFieldSubmitted: (term) {},
+                                controller: codeControl,
+                                decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.all(0.0),
+                                  border: InputBorder.none,
+                                  hintText: "Code",
+                                ),
+                                validator: (value) {
+                                  if (isValidEmail(value!) == false ||
+                                      (value.length < 255) == false ||
+                                      value.isEmpty) {
+                                    return 'Please enter a valid email';
+                                  }
+                                  return null;
+                                }),
+                          ),
+                        ],
+                      ),
                     ),
-                    Container(
+                  
+       SizedBox(
+              height: size.height * 0.02,
+            ),
+   Container(
                       width: size.width,
                       height: size.height * 0.09,
                       decoration: BoxDecoration(
@@ -306,7 +240,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 textCapitalization: TextCapitalization.words,
                                 obscureText: true,
                                 onFieldSubmitted: (term) {},
-                                controller: confPasswordControl,
+                                controller: confirmPasswordControl,
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.all(0.0),
                                   border: InputBorder.none,
@@ -326,48 +260,40 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ],
                       ),
                     ),
+                
+              
                   ],
                 ),
               ),
             ),
-            Spacer(),
-            GestureDetector(
-              onTap: () {
-                saveForm(context);
-              },
-              child: Container(
-                width: size.width * 0.9,
-                height: size.height * 0.077,
-                decoration: BoxDecoration(
-                    color: kPrimaryColor,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Center(
-                  child: Text(
-                    "Register",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ),
-              ),
-            ),
             SizedBox(
-              height: size.height * 0.03,
-            ),
-            GestureDetector(
-                onTap: () => Navigator.of(context).pushNamedAndRemoveUntil(
-                    LoginScreen.routeName, (route) => false),
-                child: Text(
-                  "Sign in",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold),
-                )),
-            SizedBox(
-              height: size.height * 0.05,
-            ),
+                            height: size.height * 0.2,
+                          ),
+             GestureDetector(
+                          onTap: () {
+                            saveForm(context);
+                          },
+                          child: Container(
+                            width: size.width * 0.9,
+                            height: size.height * 0.077,
+                            decoration: BoxDecoration(
+                                color: kPrimaryColor,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Center(
+                              child: Text(
+                                "Send",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                          ),
+                        ),
+                
+                        SizedBox(height: size.height*0.05,),
+      
+      
           ],
         ),
       ),

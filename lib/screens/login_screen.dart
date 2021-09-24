@@ -2,18 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:motor_bike_new/screens/forget_password_screen.dart';
 import 'package:motor_bike_new/screens/main_screen.dart';
 import 'package:motor_bike_new/screens/register_screen.dart';
-
 import '../constants.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
     static const routeName = '/login';
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   GlobalKey<FormState> formKey = GlobalKey();
+
   TextEditingController emailControl = TextEditingController();
+
   TextEditingController passwordControl = TextEditingController();
+
+getdate(){
+
+}
+
 
   @override
   Widget build(BuildContext context) {
+    
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,

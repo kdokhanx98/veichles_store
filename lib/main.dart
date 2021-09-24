@@ -21,6 +21,7 @@ import 'screens/location_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/my_listings.dart';
 import 'screens/register_screen.dart';
+import 'screens/set_new_passowrd_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -82,6 +83,7 @@ class _MyAppState extends State<MyApp> {
           GetLocation.routeName: (context) => GetLocation(),
           MyListingsScreen.routeName: (context) => MyListingsScreen(),
           AccountScreen.routeName: (context) => AccountScreen(),
+          SetNewPasswordScreen.routeName: (context) => SetNewPasswordScreen(),
         },
       ),
     );
