@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:motor_bike_new/provider/auth_provider.dart';
 import 'package:motor_bike_new/screens/forget_password_screen.dart';
 import 'package:motor_bike_new/screens/main_screen.dart';
 import 'package:motor_bike_new/screens/register_screen.dart';
+import 'package:provider/provider.dart';
 import '../constants.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -18,9 +20,47 @@ class _LoginScreenState extends State<LoginScreen> {
 
   TextEditingController passwordControl = TextEditingController();
 
-getdate(){
 
-}
+  saveForm(BuildContext context) {
+    print('icslck');
+
+    final isValid = formKey.currentState!.validate();
+    if (!isValid) {
+      print('inVaild');
+      return;
+    }
+    formKey.currentState!.save();
+    print("aaaaa");
+
+    if (isValid) {
+            showLoaderDialog(context);
+
+
+      Provider.of<AuthProvider>(context, listen: false)
+          .getUserToken(
+            username: emailControl.text,
+            password: passwordControl.text,
+
+            //   context: context
+          )
+          .then((value) {
+            if(value){
+             Provider.of<AuthProvider>(context, listen: false).posetLogin().then((value) {
+                Navigator.of(context).pop();
+
+               Navigator.of(context).pushNamedAndRemoveUntil(MainScreen.routeName, (route) => false);
+             });
+
+                       //   
+
+            }else{
+ Navigator.of(context).pop();
+            }
+          });
+    }
+  }
+
+ 
 
 
   @override
@@ -160,7 +200,8 @@ getdate(){
         SizedBox(height: size.height*0.25,),
                GestureDetector(
                             onTap: () {
-                              Navigator.of(context).pushNamed(MainScreen.routeName);
+                              saveForm(context);
+                             // Navigator.of(context).pushNamed(MainScreen.routeName);
                             },
                             child: Container(
                               width: size.width * 0.9,
@@ -193,6 +234,26 @@ getdate(){
       ),
     );
   }
+
+    showLoaderDialog(BuildContext context) {
+    AlertDialog alert = AlertDialog(
+      content: new Row(
+        children: [
+          CircularProgressIndicator(),
+          Container(
+              margin: EdgeInsets.only(left: 7), child: Text("Loading...")),
+        ],
+      ),
+    );
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
 
   bool isValidEmail(String text) {
     return RegExp(

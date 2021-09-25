@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:motor_bike_new/provider/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../constants.dart';
 
@@ -11,10 +13,18 @@ class AccountScreen extends StatelessWidget {
   TextEditingController lastNameControl = TextEditingController();
   TextEditingController passwordControl = TextEditingController();
   TextEditingController confPasswordControl = TextEditingController();
-
+  bool firstTime = true;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+        final user=  Provider.of<AuthProvider>(context, listen: false).user!;
+    if(firstTime){
+
+emailControl.text = user.email;
+firstNameControl.text = user.firstName;
+lastNameControl.text = user.lastName;
+      
+    }
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -65,7 +75,7 @@ class AccountScreen extends StatelessWidget {
                                         TextCapitalization.words,
                                     obscureText: false,
                                     onFieldSubmitted: (term) {},
-                                    controller: emailControl,
+                                    controller: firstNameControl,
                                     decoration: InputDecoration(
                                       contentPadding: EdgeInsets.all(0.0),
                                       border: InputBorder.none,
@@ -111,7 +121,7 @@ class AccountScreen extends StatelessWidget {
                                         TextCapitalization.words,
                                     obscureText: false,
                                     onFieldSubmitted: (term) {},
-                                    controller: emailControl,
+                                    controller: lastNameControl,
                                     decoration: InputDecoration(
                                       contentPadding: EdgeInsets.all(0.0),
                                       border: InputBorder.none,
@@ -179,89 +189,90 @@ class AccountScreen extends StatelessWidget {
                     SizedBox(
                       height: size.height * 0.02,
                     ),
-                    Container(
-                      width: size.width,
-                      height: size.height * 0.09,
-                      decoration: BoxDecoration(
-                        color: kBackgroundColor,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: size.width * 0.03,
-                          ),
-                          Icon(
-                            Icons.lock_outline_rounded,
-                            color: kgaryColor,
-                            size: 25,
-                          ),
-                          SizedBox(
-                            width: size.width * 0.02,
-                          ),
-                          Expanded(
-                            child: TextFormField(
-                                textCapitalization: TextCapitalization.words,
-                                obscureText: true,
-                                onFieldSubmitted: (term) {},
-                                controller: passwordControl,
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.all(0.0),
-                                  border: InputBorder.none,
-                                  hintText: "Password",
-                                ),
-                                validator: (value) {
-                                  if (value!.length < 6) {
-                                    return 'Please enter a password greater than 6 characters';
-                                  }
-                                }),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.02,
-                    ),
-                    Container(
-                      width: size.width,
-                      height: size.height * 0.09,
-                      decoration: BoxDecoration(
-                        color: kBackgroundColor,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: size.width * 0.03,
-                          ),
-                          Icon(
-                            Icons.lock_outline_rounded,
-                            color: kgaryColor,
-                            size: 25,
-                          ),
-                          SizedBox(
-                            width: size.width * 0.02,
-                          ),
-                          Expanded(
-                            child: TextFormField(
-                                textCapitalization: TextCapitalization.words,
-                                obscureText: true,
-                                onFieldSubmitted: (term) {},
-                                controller: confPasswordControl,
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.all(0.0),
-                                  border: InputBorder.none,
-                                  hintText: "Confirm Password",
-                                ),
-                                validator: (value) {
-                                  if (value!.length < 6) {
-                                    return 'Please enter a password greater than 6 characters';
-                                  }
-                                }),
-                          ),
-                        ],
-                      ),
-                    ),
+                    // Container(
+                    //   width: size.width,
+                    //   height: size.height * 0.09,
+                    //   decoration: BoxDecoration(
+                    //     color: kBackgroundColor,
+                    //     borderRadius: BorderRadius.circular(15),
+                    //   ),
+                    //   child: Row(
+                    //     children: [
+                    //       SizedBox(
+                    //         width: size.width * 0.03,
+                    //       ),
+                    //       Icon(
+                    //         Icons.lock_outline_rounded,
+                    //         color: kgaryColor,
+                    //         size: 25,
+                    //       ),
+                    //       SizedBox(
+                    //         width: size.width * 0.02,
+                    //       ),
+                    //       Expanded(
+                    //         child: TextFormField(
+                    //             textCapitalization: TextCapitalization.words,
+                    //             obscureText: true,
+                    //             onFieldSubmitted: (term) {},
+                    //             controller: passwordControl,
+                    //             decoration: InputDecoration(
+                    //               contentPadding: EdgeInsets.all(0.0),
+                    //               border: InputBorder.none,
+                    //               hintText: "Password",
+                    //             ),
+                    //             validator: (value) {
+                    //               if (value!.length < 6) {
+                    //                 return 'Please enter a password greater than 6 characters';
+                    //               }
+                    //             }),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   height: size.height * 0.02,
+                    // ),
+                    // Container(
+                    //   width: size.width,
+                    //   height: size.height * 0.09,
+                    //   decoration: BoxDecoration(
+                    //     color: kBackgroundColor,
+                    //     borderRadius: BorderRadius.circular(15),
+                    //   ),
+                    //   child: Row(
+                    //     children: [
+                    //       SizedBox(
+                    //         width: size.width * 0.03,
+                    //       ),
+                    //       Icon(
+                    //         Icons.lock_outline_rounded,
+                    //         color: kgaryColor,
+                    //         size: 25,
+                    //       ),
+                    //       SizedBox(
+                    //         width: size.width * 0.02,
+                    //       ),
+                    //       Expanded(
+                    //         child: TextFormField(
+                    //             textCapitalization: TextCapitalization.words,
+                    //             obscureText: true,
+                    //             onFieldSubmitted: (term) {},
+                    //             controller: confPasswordControl,
+                    //             decoration: InputDecoration(
+                    //               contentPadding: EdgeInsets.all(0.0),
+                    //               border: InputBorder.none,
+                    //               hintText: "Confirm Password",
+                    //             ),
+                    //             validator: (value) {
+                    //               if (value!.length < 6) {
+                    //                 return 'Please enter a password greater than 6 characters';
+                    //               }
+                    //             }),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+                  
                   ],
                 ),
               ),
@@ -277,7 +288,7 @@ class AccountScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10)),
                 child: Center(
                   child: Text(
-                    "Eidt",
+                    "Edit",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 17,

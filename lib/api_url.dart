@@ -5,3 +5,5 @@ const String postResgisterUrl = "$baseUrl/users";
 const String postForgetPasswordUrl = "https://arsdev.thefixable.com/wp-json/bdpwr/v1/reset-password";
 const String postSetNewPasswordUrl = "https://arsdev.thefixable.com/wp-json/bdpwr/v1/set-password";
 const String getTokenUrl = "https://arsdev.thefixable.com/wp-json/jwt-auth/v1/token";
+const String getUserTokenUrl = "https://arsdev.thefixable.com/wp-json/jwt-auth/v1/token";
+const String postLogin = "https://arsdev.thefixable.com/wp-json/ars/login";

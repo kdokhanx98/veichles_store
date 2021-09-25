@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:motor_bike_new/provider/auth_provider.dart';
 import 'package:motor_bike_new/screens/account_screen.dart';
 import 'package:motor_bike_new/screens/contact_details_screen.dart';
 import 'package:motor_bike_new/screens/contact_us_screen.dart';
@@ -11,6 +12,7 @@ import 'package:motor_bike_new/screens/sell_now_screen.dart';
 import 'package:motor_bike_new/screens/settings_screen.dart';
 import 'package:motor_bike_new/screens/side_menu_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:provider/provider.dart';
 import 'dart:io' show Platform;
 
 import 'my_listings.dart';
@@ -31,7 +33,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-
+    final user=  Provider.of<AuthProvider>(context, listen: false).user!;
     return Scaffold(
       key: _key,
       drawer: Drawer(
@@ -60,7 +62,7 @@ class _MainScreenState extends State<MainScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Faisal Akram",
+                          "${user.firstName} ${user.lastName}",
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                         SizedBox(height: height * 0.01),
