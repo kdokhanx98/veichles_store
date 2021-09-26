@@ -7,6 +7,7 @@ import 'package:motor_bike_new/screens/contact_us_screen.dart';
 import 'package:motor_bike_new/screens/faq_screen.dart';
 import 'package:motor_bike_new/screens/favourite_screen.dart';
 import 'package:motor_bike_new/screens/home_screen.dart';
+import 'package:motor_bike_new/screens/login_screen.dart';
 import 'package:motor_bike_new/screens/search_screen.dart';
 import 'package:motor_bike_new/screens/sell_now_screen.dart';
 import 'package:motor_bike_new/screens/settings_screen.dart';
@@ -105,6 +106,11 @@ class _MainScreenState extends State<MainScreen> {
               Navigator.popAndPushNamed(context, FAQScreen.routeName);
             }),
           
+              getDrawerItem(Icons.help_outline, "Logout", callback: () {
+              Navigator.pushNamedAndRemoveUntil(context, LoginScreen.routeName, (route) => false);
+            }),
+          
+
             SizedBox(height: height * 0.2),
             Center(
               child: Column(

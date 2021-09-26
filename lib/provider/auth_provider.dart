@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
@@ -94,6 +95,71 @@ class AuthProvider with ChangeNotifier {
         userDisplayName = responseData['user_display_name'];
 
         print(" getUserToken $token");
+        print(" getUserToken $responseData");
+        return true;
+      }
+    } catch (e) {
+      print("getUserToken $e");
+      return false;
+    }
+  }
+
+
+  Future<bool> postUpdateUser({String? username, firstName , lastName , email , id}) async {
+    // check if Token avilable
+  print("username $username");
+  print("firstName $firstName");
+  print("lastName $lastName");
+  print("email $email");
+  print("id $id");
+    final url = Uri.parse("$postupdateUrl$id");
+
+    Map<String, String> userData = {
+      "username": username!,
+      "first_name": firstName,
+      "last_name": lastName,
+      "email": email,
+    };
+  Map<String, String> header = {
+      "Authorization": "Bearer $token",
+    };
+
+    try {
+      final response = await http.post(url, body: userData , headers: header);
+
+      final responseData = json.decode(response.body);
+        log(" getUserToken $responseData");
+
+      if (responseData.containsKey('code')) {
+        String masg = responseData["message"];
+
+        Fluttertoast.showToast(
+            msg: masg,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.white,
+            textColor: Colors.black,
+            fontSize: 16.0);
+
+        return false;
+      } else {
+
+           user = User(
+            email: responseData['email'],
+            firstName: responseData['first_name'],
+            id: responseData['id'].toString(),
+            lastName: responseData['last_name'],
+            link: responseData['link'],
+            name: responseData['name'],
+            userName: responseData['username']);
+
+        // token = responseData['token'];
+        // userEmail = responseData['user_email'];
+        // userNicName = responseData['user_nicename'];
+        // userDisplayName = responseData['user_display_name'];
+
+     //   print(" getUserToken $token");
         print(" getUserToken $responseData");
         return true;
       }
