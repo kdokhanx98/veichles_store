@@ -74,6 +74,7 @@ class AuthProvider with ChangeNotifier {
       final response = await http.post(url, body: userData);
 
       final responseData = json.decode(response.body);
+        log(" getUserToken $responseData");
 
       if (responseData.containsKey('code')) {
         String masg = responseData["message"];

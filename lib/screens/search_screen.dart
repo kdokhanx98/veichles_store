@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:motor_bike_new/models/filtter.dart';
+import 'package:motor_bike_new/provider/content_provider.dart';
+import 'package:provider/provider.dart';
 
 class SearchScreen extends StatefulWidget {
   static const routeName = '/search';
@@ -595,6 +598,30 @@ class _SearchScreenState extends State<SearchScreen> {
                 // shape:          RoundedRectangleBorder(borderRadius: new BorderRadius.circular(40.0)),
                 onPressed: () {
                   print("saving search status");
+/*
+
+  var makeStartRangeController = TextEditingController();
+  var makeEndRangeController = TextEditingController();
+  var priceStartRangeController = TextEditingController();
+  var priceEndRangeController = TextEditingController();
+  var mileageStartRangeController = TextEditingController();
+  var mileageEndRangeController = TextEditingController();
+
+ */
+                  Provider.of<Contentrovider>(context , listen: false).filtter= Filtter(
+                    bodyType:selectedBodyList ,
+                    mileageLowValue: mileageStartRangeController.text,
+                    mileagehigherValue:mileageEndRangeController.text ,
+                    modelYearLowValue: makeStartRangeController.text,
+                    modelYearhigherValue:makeEndRangeController.text ,
+                    priceLowValue:priceStartRangeController.text ,
+                    pricehigherValue: priceEndRangeController.text,
+                    transmission:selectedTransmissionList ,
+                  );
+
+                  print("${Provider.of<Contentrovider>(context , listen: false).filtter!.mileageLowValue}");
+                  print("${Provider.of<Contentrovider>(context , listen: false).filtter!.bodyType}");
+                  print("${Provider.of<Contentrovider>(context , listen: false).filtter!.transmission}");
                 },
                 color: Colors.green,
                 child: Text(

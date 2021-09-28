@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:motor_bike_new/models/catgeroy.dart';
+import 'package:motor_bike_new/models/filtter.dart';
 import 'package:motor_bike_new/models/vehicle.dart';
 
 import '../api_url.dart';
@@ -13,7 +14,7 @@ class Contentrovider with ChangeNotifier {
     return [..._vehicleList];
   }
 
-
+Filtter? filtter;
    String? location;
 
    changeData(String newData){
