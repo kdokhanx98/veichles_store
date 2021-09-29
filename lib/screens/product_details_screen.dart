@@ -9,8 +9,13 @@ import 'package:provider/provider.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   final String id;
+  final String title;
 
-  const ProductDetailsScreen({Key? key, required this.id}) : super(key: key);
+  const ProductDetailsScreen({
+    Key? key,
+    required this.id,
+    required this.title,
+  }) : super(key: key);
   @override
   _ProductDetailsScreenState createState() => _ProductDetailsScreenState();
 }
@@ -63,11 +68,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-        final recentlyAddedData = Provider.of<Contentrovider>(context, listen: false).getvehicleLList;
+    final recentlyAddedData = widget.title == "allVeichel"
+        ? Provider.of<Contentrovider>(context, listen: false).getvehicleLList
+        : Provider.of<Contentrovider>(context, listen: false)
+            .getAllVehicleLList;
 
     final height = MediaQuery.of(context).size.height;
- final   itemDate =  recentlyAddedData.firstWhere((element) => element.id == widget.id);
- financingVehiclePriceCont.text = itemDate.carleaderListingPrice!;
+    final itemDate =
+        recentlyAddedData.firstWhere((element) => element.id == widget.id);
+    financingVehiclePriceCont.text = itemDate.carleaderListingPrice!;
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -95,23 +104,25 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   // image slider
                   Container(
                     height: height * 0.3,
-                    child:itemDate.image!.length!=0? PageView.builder(
-                      itemBuilder: (context, index) {
-                        return Image.network(
-                          itemDate.image![index],
-                          fit: BoxFit.cover,
-                        );
-                      },
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 3,
-                      onPageChanged: (index) {
-                        position = index;
-                        setState(() {});
-                      },
-                    ): Image.asset(
-                          'assets/2a.jpg',
-                          fit: BoxFit.cover,
-                        ),
+                    child: itemDate.image!.length != 0
+                        ? PageView.builder(
+                            itemBuilder: (context, index) {
+                              return Image.network(
+                                itemDate.image![index],
+                                fit: BoxFit.cover,
+                              );
+                            },
+                            scrollDirection: Axis.horizontal,
+                            itemCount: 3,
+                            onPageChanged: (index) {
+                              position = index;
+                              setState(() {});
+                            },
+                          )
+                        : Image.asset(
+                            'assets/2a.jpg',
+                            fit: BoxFit.cover,
+                          ),
                   ),
                   // product info
                   Padding(
@@ -224,7 +235,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                           ),
                                           Padding(
                                               padding: EdgeInsets.only(top: 5),
-                                              child: Text(" ${itemDate.carleaderListingMiles} mi.",
+                                              child: Text(
+                                                  " ${itemDate.carleaderListingMiles} mi.",
                                                   style: TextStyle(
                                                       fontSize: 13,
                                                       fontWeight:
@@ -263,7 +275,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                           ),
                                           Padding(
                                               padding: EdgeInsets.only(top: 5),
-                                              child: Text(itemDate.carleaderListingEngineflue!,
+                                              child: Text(
+                                                  itemDate
+                                                      .carleaderListingEngineflue!,
                                                   style: TextStyle(
                                                       fontSize: 13,
                                                       fontWeight:
@@ -297,7 +311,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                         ),
                                         Padding(
                                             padding: EdgeInsets.only(top: 5),
-                                            child: Text(itemDate.carleaderListingModelTransmissionType!,
+                                            child: Text(
+                                                itemDate
+                                                    .carleaderListingModelTransmissionType!,
                                                 style: TextStyle(
                                                     fontSize: 13,
                                                     fontWeight: FontWeight.bold,
@@ -320,9 +336,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           Stack(
                             alignment: Alignment.bottomRight,
                             children: <Widget>[
-                              Html(
-  data:itemDate.content
-) //isExpanded
+                              Html(data: itemDate.content) //isExpanded
                             ],
                           ),
                           SizedBox(height: 10),
@@ -353,7 +367,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                             top: 4, bottom: 4, left: 24),
                                         color: Color(0xFFF8F8F8),
                                         child: Text(
-                                         itemDate.metaBodyTitle!,
+                                          itemDate.metaBodyTitle!,
                                           style: TextStyle(
                                               color: Color(0xFF212121),
                                               fontSize: 18),
@@ -423,7 +437,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                             top: 4, bottom: 4, left: 24),
                                         color: Color(0xFFF8F8F8),
                                         child: Text(
-                                         itemDate.carleaderListingEngineflue!,
+                                          itemDate.carleaderListingEngineflue!,
                                           style: TextStyle(
                                               color: Color(0xFF212121),
                                               fontSize: 18),
@@ -493,7 +507,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                             top: 4, bottom: 4, left: 24),
                                         color: Color(0xFFF8F8F8),
                                         child: Text(
-                                          itemDate.carleaderListingModelTransmissionType!,
+                                          itemDate
+                                              .carleaderListingModelTransmissionType!,
                                           style: TextStyle(
                                               color: Color(0xFF212121),
                                               fontSize: 18),
@@ -598,7 +613,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                             top: 4, bottom: 4, left: 24),
                                         color: Color(0xFFF8F8F8),
                                         child: Text(
-                                         itemDate.carleaderListingVin!,
+                                          itemDate.carleaderListingVin!,
                                           style: TextStyle(
                                               color: Color(0xFF212121),
                                               fontSize: 18),

@@ -18,7 +18,10 @@ class MyListItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.push(context, new MaterialPageRoute(builder: (context) {
-          return ProductDetailsScreen(id: recentlyAddedData[index].id!);
+          return ProductDetailsScreen(
+            id: recentlyAddedData[index].id!,
+            title: "search",
+          );
         }));
       },
       child: Container(

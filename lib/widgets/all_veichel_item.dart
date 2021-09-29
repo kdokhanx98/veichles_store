@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:motor_bike_new/provider/content_provider.dart';
 import 'package:motor_bike_new/screens/product_details_screen.dart';
@@ -13,12 +12,16 @@ class AllVeichleItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.width;
-    final recentlyAddedData = Provider.of<Contentrovider>(context, listen: false).getAllVehicleLList;
+    final recentlyAddedData =
+        Provider.of<Contentrovider>(context, listen: false).getAllVehicleLList;
 
     return InkWell(
       onTap: () {
         Navigator.push(context, new MaterialPageRoute(builder: (context) {
-          return ProductDetailsScreen(id: recentlyAddedData[index].id!);
+          return ProductDetailsScreen(
+            id: recentlyAddedData[index].id!,
+            title: "search",
+          );
         }));
       },
       child: Container(
@@ -47,16 +50,16 @@ class AllVeichleItem extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(8.0),
                         bottomLeft: Radius.circular(8.0)),
-                    child: recentlyAddedData[index].image!.length==0?  Image.asset("assets/image_placeholder.jpg",
-                        fit: BoxFit.cover,
-                        height: width * 0.35,
-                        width: width * 0.29) :Image.network(recentlyAddedData[index].image![0],
-                        fit: BoxFit.cover,
-                        height: width * 0.35,
-                        width: width * 0.29),
-                  )
-                  
-                  ),
+                    child: recentlyAddedData[index].image!.length == 0
+                        ? Image.asset("assets/image_placeholder.jpg",
+                            fit: BoxFit.cover,
+                            height: width * 0.35,
+                            width: width * 0.29)
+                        : Image.network(recentlyAddedData[index].image![0],
+                            fit: BoxFit.cover,
+                            height: width * 0.35,
+                            width: width * 0.29),
+                  )),
               SizedBox(width: width * 0.015),
               Expanded(
                 child: Column(
@@ -128,7 +131,9 @@ class AllVeichleItem extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                               recentlyAddedData[index].carleaderListingMiles!+"mi",
+                                recentlyAddedData[index]
+                                        .carleaderListingMiles! +
+                                    "mi",
                                 style: TextStyle(
                                   color: Colors.grey.shade500,
                                   fontSize: 14,
@@ -142,7 +147,8 @@ class AllVeichleItem extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                recentlyAddedData[index].carleaderListingEngineflue!,
+                                recentlyAddedData[index]
+                                    .carleaderListingEngineflue!,
                                 style: TextStyle(
                                   color: Colors.grey.shade500,
                                   fontSize: 14,

@@ -11,9 +11,9 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  RangeValues _currentMakeRangeValues = const RangeValues(2006, 2016);
-  RangeValues _currentPriceRangeValues = const RangeValues(60000, 125000);
-  RangeValues _currentMileageRangeValues = const RangeValues(30000, 120000);
+  RangeValues _currentMakeRangeValues = RangeValues(2006, 2016);
+  RangeValues _currentPriceRangeValues = RangeValues(60000, 125000);
+  RangeValues _currentMileageRangeValues = RangeValues(30000, 120000);
 
   var makeStartRangeController = TextEditingController();
   var makeEndRangeController = TextEditingController();
@@ -63,6 +63,20 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<Contentrovider>(context).filtter!;
+    // selectedTransmissionList =
+    //     Provider.of<Contentrovider>(context).filtter!.transmission;
+    // _currentPriceRangeValues = RangeValues(
+    //     double.parse(user.priceLowValue), double.parse(user.pricehigherValue));
+
+    // _currentMileageRangeValues = RangeValues(double.parse(user.mileageLowValue),
+    //     double.parse(user.mileagehigherValue));
+
+    // _currentMakeRangeValues = RangeValues(double.parse(user.modelYearLowValue),
+    //     double.parse(user.modelYearhigherValue));
+
+    selectedTransmissionList =
+        Provider.of<Contentrovider>(context).filtter!.bodyType;
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Color(0xff00B241),
@@ -608,20 +622,24 @@ class _SearchScreenState extends State<SearchScreen> {
   var mileageEndRangeController = TextEditingController();
 
  */
-                  Provider.of<Contentrovider>(context , listen: false).filtter= Filtter(
-                    bodyType:selectedBodyList ,
+                  Provider.of<Contentrovider>(context, listen: false).filtter =
+                      Filtter(
+                    bodyType: selectedBodyList,
                     mileageLowValue: mileageStartRangeController.text,
-                    mileagehigherValue:mileageEndRangeController.text ,
+                    mileagehigherValue: mileageEndRangeController.text,
                     modelYearLowValue: makeStartRangeController.text,
-                    modelYearhigherValue:makeEndRangeController.text ,
-                    priceLowValue:priceStartRangeController.text ,
+                    modelYearhigherValue: makeEndRangeController.text,
+                    priceLowValue: priceStartRangeController.text,
                     pricehigherValue: priceEndRangeController.text,
-                    transmission:selectedTransmissionList ,
+                    transmission: selectedTransmissionList,
                   );
 
-                  print("${Provider.of<Contentrovider>(context , listen: false).filtter!.mileageLowValue}");
-                  print("${Provider.of<Contentrovider>(context , listen: false).filtter!.bodyType}");
-                  print("${Provider.of<Contentrovider>(context , listen: false).filtter!.transmission}");
+                  print(
+                      "${Provider.of<Contentrovider>(context, listen: false).filtter!.mileageLowValue}");
+                  print(
+                      "${Provider.of<Contentrovider>(context, listen: false).filtter!.bodyType}");
+                  print(
+                      "${Provider.of<Contentrovider>(context, listen: false).filtter!.transmission}");
                 },
                 color: Colors.green,
                 child: Text(
