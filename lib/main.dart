@@ -21,6 +21,7 @@ import 'screens/location_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/my_listings.dart';
 import 'screens/register_screen.dart';
+import 'screens/searched_vehicles_screen.dart';
 import 'screens/set_new_passowrd_screen.dart';
 import 'screens/splash_screen.dart';
 
@@ -85,6 +86,7 @@ class _MyAppState extends State<MyApp> {
           MyListingsScreen.routeName: (context) => MyListingsScreen(),
           AccountScreen.routeName: (context) => AccountScreen(),
           SetNewPasswordScreen.routeName: (context) => SetNewPasswordScreen(),
+          SearchedVhiclesScreen.routeName: (context) => SearchedVhiclesScreen(),
         },
       ),
     );
