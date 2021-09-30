@@ -77,7 +77,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<Contentrovider>(context).filtter!;
+    Provider.of<Contentrovider>(context).filtter!;
     // selectedTransmissionList =
     //     Provider.of<Contentrovider>(context).filtter!.transmission;
     // _currentPriceRangeValues = RangeValues(
@@ -645,7 +645,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
                   print("selectedTransmissionList: $selectedTransmissionList");
                   print("transmissiontt: $transmission");
-                  print("selectedBodyList : ${selectedBodyList}");
+                  print("selectedBodyList : $selectedBodyList");
                   //     print("transmission : ${selectedBodyList.join(",")}");
                   Provider.of<Contentrovider>(context, listen: false).filtter =
                       Filtter(

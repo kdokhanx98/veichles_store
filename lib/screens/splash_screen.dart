@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:motor_bike_new/screens/login_screen.dart';
-import 'package:motor_bike_new/screens/register_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static String tag = '/ShophopSplash';

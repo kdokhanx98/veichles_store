@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:motor_bike_new/provider/auth_provider.dart';
-import 'package:motor_bike_new/provider/content_provider.dart';
 import 'package:motor_bike_new/screens/login_screen.dart';
 import 'package:motor_bike_new/screens/bottum_nav_bar_screen.dart';
 import 'package:provider/provider.dart';

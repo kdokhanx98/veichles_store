@@ -8,11 +8,11 @@ import '../constants.dart';
 class SetNewPasswordScreen extends StatelessWidget {
   static const routeName = '/SetNewPasswordScreen';
 
-  GlobalKey<FormState> formKey = GlobalKey();
-  TextEditingController emailControl = TextEditingController();
-  TextEditingController codeControl = TextEditingController();
-  TextEditingController passwordControl = TextEditingController();
-  TextEditingController confirmPasswordControl = TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey();
+  final TextEditingController emailControl = TextEditingController();
+  final TextEditingController codeControl = TextEditingController();
+  final TextEditingController passwordControl = TextEditingController();
+  final TextEditingController confirmPasswordControl = TextEditingController();
 
   saveForm(BuildContext context) {
     print('icslck');

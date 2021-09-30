@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:motor_bike_new/constants.dart';
 import 'package:motor_bike_new/provider/content_provider.dart';
 import 'package:motor_bike_new/widgets/all_veichel_item.dart';
-import 'package:motor_bike_new/widgets/veichle_recently_item.dart';
 import 'package:provider/provider.dart';
 
 class SearchedVhiclesScreen extends StatelessWidget {

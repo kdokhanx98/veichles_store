@@ -309,8 +309,6 @@ class Contentrovider with ChangeNotifier {
       print('addedLog  : ${_vehicleList.length}');
       notifyListeners();
       return true;
-
-      print("--------------------------------");
     } catch (e) {
       print(" addedLog $e");
       return false;

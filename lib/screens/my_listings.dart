@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:motor_bike_new/provider/content_provider.dart';
 import 'package:motor_bike_new/widgets/my_list_item.dart';
-import 'package:motor_bike_new/widgets/veichle_recently_item.dart';
 import 'package:provider/provider.dart';
 
 class MyListingsScreen extends StatelessWidget {

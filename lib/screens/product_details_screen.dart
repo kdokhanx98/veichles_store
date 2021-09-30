@@ -82,7 +82,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         recentlyAddedData = Provider.of<Contentrovider>(context, listen: false)
             .getAllVehicleLList;
       }
-      ;
       setState(() {
         firstTime = !firstTime;
       });

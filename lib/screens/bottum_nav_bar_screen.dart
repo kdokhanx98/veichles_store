@@ -34,7 +34,6 @@ class _BottumNavBarState extends State<BottumNavBar> {
   @override
   void dispose() {
     _controller.dispose();
-    // TODO: _controller dispose
     super.dispose();
   }
 

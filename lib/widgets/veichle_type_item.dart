@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:motor_bike_new/provider/content_provider.dart';
 import 'package:motor_bike_new/screens/cate_data_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
