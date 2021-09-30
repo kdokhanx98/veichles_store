@@ -4,6 +4,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:motor_bike_new/constants.dart';
 import 'package:motor_bike_new/provider/content_provider.dart';
 import 'package:motor_bike_new/screens/location_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -131,34 +132,59 @@ class _SellScreenState extends State<SellScreen> {
                               ]))),
                     ),
                   )
-                : Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
-                    child: SizedBox(
-                      height: height * 0.4,
-                      width: double.infinity,
-                      child: GridView.builder(
-                          itemCount: selectedPics!.length,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3),
-                          itemBuilder: (BuildContext context, int index) {
-                            return Center(
-                                child: Stack(
-                              children: [
-                                Image.file(File(selectedPics![index].path),
-                                    fit: BoxFit.cover),
-                                Positioned(
-                                    child: GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            selectedPics!.removeAt(index);
-                                          });
-                                        },
-                                        child: Icon(Icons.cancel))),
-                              ],
-                            ));
-                          }),
-                    ),
+                : Stack(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 16.0),
+                        child: SizedBox(
+                          height: height * 0.4,
+                          width: double.infinity,
+                          child: GridView.builder(
+                              itemCount: selectedPics!.length,
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 3),
+                              itemBuilder: (BuildContext context, int index) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Center(
+                                      child: Stack(
+                                    children: [
+                                      Image.file(
+                                          File(selectedPics![index].path),
+                                          fit: BoxFit.cover),
+                                      Positioned(
+                                          child: GestureDetector(
+                                              onTap: () {
+                                                setState(() {
+                                                  selectedPics!.removeAt(index);
+                                                });
+                                              },
+                                              child: Icon(Icons.cancel))),
+                                    ],
+                                  )),
+                                );
+                              }),
+                        ),
+                      ),
+                      Positioned(
+                          bottom: 15,
+                          left: 15,
+                          child: GestureDetector(
+                            onTap: () {
+                              print("clicked");
+                              selectImages();
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: kPrimaryColor,
+                                  borderRadius: BorderRadius.circular(50)),
+                              height: 35,
+                              width: 35,
+                              child: Icon(Icons.add, color: Colors.white),
+                            ),
+                          )),
+                    ],
                   ),
 
             //Top Heading
@@ -1012,9 +1038,9 @@ class _SellScreenState extends State<SellScreen> {
   void selectImages() async {
     print("select clicked");
     if (selectedPics != null) {
-      selectedPics!.clear();
+      //  selectedPics!.clear();
     }
-    selectedPics = await _picker.pickMultiImage();
+    selectedPics!.addAll(await _picker.pickMultiImage() as List<XFile>);
 
     if (selectedPics != null) {
       print(selectedPics);

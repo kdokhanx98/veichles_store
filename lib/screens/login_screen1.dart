@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
-import 'package:motor_bike_new/screens/main_screen.dart';
+import 'package:motor_bike_new/screens/bottum_nav_bar_screen.dart';
 
 class LoginScreen1 extends StatelessWidget {
   static const routeName = '/login';
@@ -30,7 +30,7 @@ class LoginScreen1 extends StatelessWidget {
                 logo: 'assets/ars_logo_alt.png',
                 onLogin: (loginData) {
                   Navigator.of(context)
-                      .pushReplacementNamed(MainScreen.routeName);
+                      .pushReplacementNamed(BottumNavBar.routeName);
                 },
                 onSignup: (loginData) {},
                 onRecoverPassword: (code) {},

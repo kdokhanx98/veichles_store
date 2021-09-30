@@ -3,24 +3,24 @@ import 'package:motor_bike_new/provider/content_provider.dart';
 import 'package:motor_bike_new/screens/product_details_screen.dart';
 import 'package:provider/provider.dart';
 
-class VeichleRecentlyItem extends StatelessWidget {
+class VeichleCateItem extends StatelessWidget {
   final bool isLiked;
   final int index;
-  const VeichleRecentlyItem(this.isLiked, this.index);
+  const VeichleCateItem(this.isLiked, this.index);
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.width;
     final recentlyAddedData =
-        Provider.of<Contentrovider>(context, listen: false).getvehicleLList;
+        Provider.of<Contentrovider>(context, listen: false).getCatevehicleLList;
 
     return InkWell(
       onTap: () {
         Navigator.push(context, new MaterialPageRoute(builder: (context) {
           return ProductDetailsScreen(
             id: recentlyAddedData[index].id!,
-            title: "allVeichel",
+            title: "CateDate",
           );
         }));
       },

@@ -1,12 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:motor_bike_new/provider/content_provider.dart';
 import 'package:motor_bike_new/screens/all_categories_screen.dart';
 import 'package:motor_bike_new/screens/all_products_screen.dart';
+import 'package:motor_bike_new/screens/bottum_nav_bar_screen.dart';
+import 'package:motor_bike_new/screens/search_screen.dart';
 import 'package:motor_bike_new/screens/searched_vehicles_screen.dart';
 import 'package:motor_bike_new/widgets/veichle_recently_item.dart';
 import 'package:motor_bike_new/widgets/veichle_type_item.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -76,43 +80,76 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Stack(
                                 alignment: Alignment.topRight,
                                 children: <Widget>[
-                                  TextFormField(
-                                    enabled: true,
-                                    cursorHeight: 25,
-                                    keyboardType: TextInputType.text,
-                                    autofocus: false,
-                                    controller: searchText,
-                                    textCapitalization:
-                                        TextCapitalization.words,
-                                    style: TextStyle(
-                                        color: Colors.black, fontSize: 16),
-                                    decoration: InputDecoration(
-                                        isDense: true,
-                                        hintText: "Search vehicles",
-                                        hintStyle:
-                                            TextStyle(color: Colors.grey),
-                                        filled: true,
-                                        fillColor: Colors.white,
-                                        contentPadding:
-                                            EdgeInsets.fromLTRB(15, 10, 15, 10),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey,
-                                                width: 0.5)),
-                                        enabledBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey,
-                                                width: 0.5)),
-                                        disabledBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey,
-                                                width: 0.5))),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Provider.of<Contentrovider>(context,
+                                              listen: false)
+                                          .setBottumIndex(1);
+
+                                      pushNewScreen(
+                                        context,
+                                        screen: BottumNavBar(),
+                                        withNavBar:
+                                            false, // OPTIONAL VALUE. True by default.
+                                        pageTransitionAnimation:
+                                            PageTransitionAnimation.cupertino,
+                                      );
+
+                                      // Navigator.of(context).pushAndRemoveUntil(
+                                      //   CupertinoPageRoute(
+                                      //     builder: (BuildContext context) {
+                                      //       return MainScreen();
+                                      //     },
+                                      //   ),
+                                      //   (_) => false,
+                                      // );
+
+                                      // Navigator.of(context).pushAndRemoveUntil(
+                                      //     MaterialPageRoute(
+                                      //         builder: (context) =>
+                                      //             MainScreen()),
+                                      //     (Route<dynamic> route) => false);
+                                    },
+                                    child: TextFormField(
+                                      enabled: false,
+                                      cursorHeight: 25,
+                                      keyboardType: TextInputType.text,
+                                      autofocus: false,
+                                      controller: searchText,
+                                      enableInteractiveSelection: false,
+                                      textCapitalization:
+                                          TextCapitalization.words,
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 16),
+                                      decoration: InputDecoration(
+                                          isDense: true,
+                                          hintText: "Search vehicles",
+                                          enabled: false,
+                                          hintStyle:
+                                              TextStyle(color: Colors.grey),
+                                          filled: true,
+                                          fillColor: Colors.white,
+                                          contentPadding: EdgeInsets.fromLTRB(
+                                              15, 10, 15, 10),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey,
+                                                  width: 0.5)),
+                                          enabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey,
+                                                  width: 0.5)),
+                                          disabledBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey,
+                                                  width: 0.5))),
+                                    ),
                                   ),
                                   GestureDetector(
                                     onTap: () {

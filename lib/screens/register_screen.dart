@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:motor_bike_new/provider/auth_provider.dart';
 import 'package:motor_bike_new/provider/content_provider.dart';
 import 'package:motor_bike_new/screens/login_screen.dart';
-import 'package:motor_bike_new/screens/main_screen.dart';
+import 'package:motor_bike_new/screens/bottum_nav_bar_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../constants.dart';
@@ -55,19 +55,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
       showLoaderDialog(context);
       Provider.of<AuthProvider>(context, listen: false)
           .postRegister(
-            email: emailControl.text,
-            password: passwordControl.text,
-            firstName: firstNameControl.text, userName: emailControl.text,
-            lastName: lastNameControl.text,
-            //   context: context
-          )
+        email: emailControl.text,
+        password: passwordControl.text,
+        firstName: firstNameControl.text, userName: emailControl.text,
+        lastName: lastNameControl.text,
+        //   context: context
+      )
           .then((value) {
-            if(value){
-              Navigator.of(context).pop();
-            Navigator.of(context).pushNamedAndRemoveUntil(MainScreen.routeName, (route) => false);
-
-            }
-          });
+        if (value) {
+          Navigator.of(context).pop();
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              BottumNavBar.routeName, (route) => false);
+        }
+      });
     }
   }
 
@@ -83,7 +83,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
             SizedBox(
               height: size.height * 0.1,
             ),
-            Image.asset('assets/ars_logo.jpg'),
+            Image.asset(
+              'assets/ars_logo.jpg',
+              height: size.height * 0.07,
+              width: size.width,
+            ),
             SizedBox(
               height: size.height * 0.03,
             ),
@@ -317,7 +321,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   hintText: "Confirm Password",
                                 ),
                                 validator: (value) {
-                                  
                                   if (value == null) {
                                     return 'Password is not compatible';
                                   }
@@ -334,7 +337,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
             ),
-        SizedBox(height: size.height*0.07,),
+            SizedBox(
+              height: size.height * 0.07,
+            ),
             GestureDetector(
               onTap: () {
                 saveForm(context);
@@ -357,17 +362,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
             SizedBox(
-              height: size.height * 0.03,
+              height: size.height * 0.01,
             ),
             GestureDetector(
                 onTap: () => Navigator.of(context).pushNamedAndRemoveUntil(
                     LoginScreen.routeName, (route) => false),
-                child: Text(
-                  "Sign in",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold),
+                child: Container(
+                  width: size.width * 0.9,
+                  height: size.height * 0.06,
+                  decoration: BoxDecoration(
+                      // color: kPrimaryColor,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(
+                    child: Text(
+                      "Sign in",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 )),
             SizedBox(
               height: size.height * 0.05,
@@ -378,7 +392,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-   showLoaderDialog(BuildContext context) {
+  showLoaderDialog(BuildContext context) {
     AlertDialog alert = AlertDialog(
       content: new Row(
         children: [

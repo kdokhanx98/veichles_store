@@ -3,7 +3,7 @@ import 'package:motor_bike_new/provider/auth_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../constants.dart';
-import 'main_screen.dart';
+import 'bottum_nav_bar_screen.dart';
 
 class AccountScreen extends StatefulWidget {
   static const routeName = '/AccountScreen';
@@ -39,50 +39,51 @@ class _AccountScreenState extends State<AccountScreen> {
       lastNameControl.text = user.lastName;
       userNameControl.text = user.userName;
       setState(() {
-        firstTime= !firstTime;
+        firstTime = !firstTime;
       });
     }
 
+    saveForm(BuildContext context) {
+      print('icslck');
 
-     saveForm(BuildContext context) {
-    print('icslck');
+      final isValid = formKey.currentState!.validate();
+      if (!isValid) {
+        print('inVaild');
+        return;
+      }
+      formKey.currentState!.save();
+      print("aaaaa");
 
-    final isValid = formKey.currentState!.validate();
-    if (!isValid) {
-      print('inVaild');
-      return;
-    }
-    formKey.currentState!.save();
-    print("aaaaa");
-
-    if (isValid) {
-            showLoaderDialog(context);
-
+      if (isValid) {
+        showLoaderDialog(context);
 
         Provider.of<AuthProvider>(context, listen: false)
-                    .postUpdateUser(
-                        email: user.userName,
-                        firstName: firstNameControl.text,
-                        id: user.id,
-                        lastName: lastNameControl.text,
-                        username: userNameControl.text).then((value) {
-            if(value){
-             Provider.of<AuthProvider>(context, listen: false).posetLogin().then((value) {
-                Navigator.of(context).pop();
+            .postUpdateUser(
+                email: user.userName,
+                firstName: firstNameControl.text,
+                id: user.id,
+                lastName: lastNameControl.text,
+                username: userNameControl.text)
+            .then((value) {
+          if (value) {
+            Provider.of<AuthProvider>(context, listen: false)
+                .posetLogin()
+                .then((value) {
+              Navigator.of(context).pop();
 
-               Navigator.of(context).pushNamedAndRemoveUntil(MainScreen.routeName, (route) => false);
-             });
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  BottumNavBar.routeName, (route) => false);
+            });
 
-                       //   
+            //
 
-            }else{
- Navigator.of(context).pop();
-            }
-          });
+          } else {
+            Navigator.of(context).pop();
+          }
+        });
+      }
     }
-  }
 
-  
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -384,8 +385,7 @@ class _AccountScreenState extends State<AccountScreen> {
             Spacer(),
             GestureDetector(
               onTap: () {
-
-                saveForm( context);
+                saveForm(context);
               },
               child: Container(
                 width: size.width * 0.9,
@@ -416,7 +416,7 @@ class _AccountScreenState extends State<AccountScreen> {
     );
   }
 
- showLoaderDialog(BuildContext context) {
+  showLoaderDialog(BuildContext context) {
     AlertDialog alert = AlertDialog(
       content: new Row(
         children: [

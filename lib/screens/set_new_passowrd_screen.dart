@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:motor_bike_new/provider/auth_provider.dart';
-import 'package:motor_bike_new/screens/main_screen.dart';
+import 'package:motor_bike_new/screens/bottum_nav_bar_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../constants.dart';
 
 class SetNewPasswordScreen extends StatelessWidget {
-    static const routeName = '/SetNewPasswordScreen';
+  static const routeName = '/SetNewPasswordScreen';
 
   GlobalKey<FormState> formKey = GlobalKey();
   TextEditingController emailControl = TextEditingController();
@@ -28,27 +28,34 @@ class SetNewPasswordScreen extends StatelessWidget {
     if (isValid) {
       Provider.of<AuthProvider>(context, listen: false)
           .postSetNewPassword(
-            code:codeControl.text ,password: passwordControl.text
-            //   context: context
-          )
+              code: codeControl.text, password: passwordControl.text
+              //   context: context
+              )
           .then((value) {
-            if(value)
-            Navigator.of(context).pushNamedAndRemoveUntil(MainScreen.routeName, (route) => false);
-          });
+        if (value)
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              BottumNavBar.routeName, (route) => false);
+      });
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text("Set New Password" , style: TextStyle(color: Colors.black),),
+        title: Text(
+          "Set New Password",
+          style: TextStyle(color: Colors.black),
+        ),
         elevation: 0.0,
         leading: IconButton(
-         icon: Icon(Icons.arrow_back_ios_new , color: Colors.black,),
-         onPressed: ()=>Navigator.of(context).pop(), 
+          icon: Icon(
+            Icons.arrow_back_ios_new,
+            color: Colors.black,
+          ),
+          onPressed: () => Navigator.of(context).pop(),
         ),
       ),
       backgroundColor: Colors.white,
@@ -59,7 +66,6 @@ class SetNewPasswordScreen extends StatelessWidget {
             SizedBox(
               height: size.height * 0.03,
             ),
-            
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Text(
@@ -67,7 +73,7 @@ class SetNewPasswordScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
               ),
             ),
-             SizedBox(
+            SizedBox(
               height: size.height * 0.02,
             ),
             Padding(
@@ -76,9 +82,7 @@ class SetNewPasswordScreen extends StatelessWidget {
                 key: formKey,
                 child: Column(
                   children: [
-                
-      
-   Container(
+                    Container(
                       width: size.width,
                       height: size.height * 0.09,
                       decoration: BoxDecoration(
@@ -153,7 +157,6 @@ class SetNewPasswordScreen extends StatelessWidget {
                                   hintText: "Confirm Password",
                                 ),
                                 validator: (value) {
-                                  
                                   if (value == null) {
                                     return 'Password is not compatible';
                                   }
@@ -166,12 +169,10 @@ class SetNewPasswordScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                
-               SizedBox(
-              height: size.height * 0.02,
-            ),
-
-                     Container(
+                    SizedBox(
+                      height: size.height * 0.02,
+                    ),
+                    Container(
                       width: size.width,
                       height: size.height * 0.09,
                       decoration: BoxDecoration(
@@ -214,39 +215,37 @@ class SetNewPasswordScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                  
                   ],
                 ),
               ),
             ),
             SizedBox(
-                            height: size.height * 0.3,
-                          ),
-             GestureDetector(
-                          onTap: () {
-                            saveForm(context);
-                          },
-                          child: Container(
-                            width: size.width * 0.9,
-                            height: size.height * 0.077,
-                            decoration: BoxDecoration(
-                                color: kPrimaryColor,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Center(
-                              child: Text(
-                                "Reset",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ),
-                          ),
-                        ),
-                
-                        SizedBox(height: size.height*0.05,),
-      
-      
+              height: size.height * 0.3,
+            ),
+            GestureDetector(
+              onTap: () {
+                saveForm(context);
+              },
+              child: Container(
+                width: size.width * 0.9,
+                height: size.height * 0.077,
+                decoration: BoxDecoration(
+                    color: kPrimaryColor,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Center(
+                  child: Text(
+                    "Reset",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: size.height * 0.05,
+            ),
           ],
         ),
       ),

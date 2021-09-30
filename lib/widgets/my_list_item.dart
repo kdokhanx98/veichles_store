@@ -20,14 +20,14 @@ class MyListItem extends StatelessWidget {
         Navigator.push(context, new MaterialPageRoute(builder: (context) {
           return ProductDetailsScreen(
             id: recentlyAddedData[index].id!,
-            title: "search",
+            title: "allVeichel",
           );
         }));
       },
       child: Container(
         height: height * 0.36,
         width: double.infinity,
-        margin: EdgeInsets.only(top: 15, left: 5, right: 16),
+        margin: EdgeInsets.only(top: 15, left: 16, right: 16),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(5),

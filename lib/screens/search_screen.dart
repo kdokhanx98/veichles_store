@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:motor_bike_new/models/filtter.dart';
 import 'package:motor_bike_new/provider/content_provider.dart';
+import 'package:motor_bike_new/screens/bottum_nav_bar_screen.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -23,6 +25,7 @@ class _SearchScreenState extends State<SearchScreen> {
   var mileageEndRangeController = TextEditingController();
 
   List<String> selectedBodyList = [];
+  List<String> selectedBodyList1 = [];
 
   List<String> bodyList = [
     "Executive Coach",
@@ -35,6 +38,7 @@ class _SearchScreenState extends State<SearchScreen> {
   ];
 
   List<String> selectedTransmissionList = [];
+  List<String> transmission = [];
 
   List<String> transmissionList = [
     "Automatic",
@@ -46,18 +50,28 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   void initState() {
-    makeStartRangeController.text =
-        _currentMakeRangeValues.start.round().toString();
-    makeEndRangeController.text =
-        _currentMakeRangeValues.end.round().toString();
-    priceStartRangeController.text =
-        _currentPriceRangeValues.start.round().toString();
-    priceEndRangeController.text =
-        _currentPriceRangeValues.end.round().toString();
-    mileageStartRangeController.text =
-        _currentMileageRangeValues.start.round().toString();
-    mileageEndRangeController.text =
-        _currentMileageRangeValues.end.round().toString();
+    Future.delayed(const Duration(seconds: 0), () {
+      final user = Provider.of<Contentrovider>(context, listen: false).filtter!;
+      print("user ${user.modelYearLowValue}");
+      makeStartRangeController.text = user.modelYearLowValue;
+      makeEndRangeController.text = user.modelYearhigherValue;
+      priceStartRangeController.text = user.priceLowValue;
+      priceEndRangeController.text = user.pricehigherValue;
+      mileageStartRangeController.text = user.mileageLowValue;
+      mileageEndRangeController.text = user.mileagehigherValue;
+    });
+    // makeStartRangeController.text =
+    //     _currentMakeRangeValues.start.round().toString();
+    // makeEndRangeController.text =
+    //     _currentMakeRangeValues.end.round().toString();
+    // priceStartRangeController.text =
+    //     _currentPriceRangeValues.start.round().toString();
+    // priceEndRangeController.text =
+    //     _currentPriceRangeValues.end.round().toString();
+    // mileageStartRangeController.text =
+    //     _currentMileageRangeValues.start.round().toString();
+    // mileageEndRangeController.text =
+    //     _currentMileageRangeValues.end.round().toString();
     super.initState();
   }
 
@@ -76,7 +90,8 @@ class _SearchScreenState extends State<SearchScreen> {
     //     double.parse(user.modelYearhigherValue));
 
     selectedTransmissionList =
-        Provider.of<Contentrovider>(context).filtter!.bodyType;
+        Provider.of<Contentrovider>(context).filtter!.transmission;
+    selectedBodyList = Provider.of<Contentrovider>(context).filtter!.bodyType;
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Color(0xff00B241),
@@ -552,9 +567,10 @@ class _SearchScreenState extends State<SearchScreen> {
                 alignment: Alignment.topLeft,
                 child: MultiSelectChip(
                   bodyList,
+                  selectedList: selectedBodyList,
                   onSelectionChanged: (selectedList) {
                     setState(() {
-                      selectedBodyList = selectedList;
+                      selectedBodyList1 = selectedList;
                     });
                   },
                 ),
@@ -594,9 +610,13 @@ class _SearchScreenState extends State<SearchScreen> {
                 alignment: Alignment.topLeft,
                 child: MultiSelectChip(
                   transmissionList,
+                  selectedList: selectedTransmissionList,
                   onSelectionChanged: (selectedList) {
                     setState(() {
-                      selectedTransmissionList = selectedList;
+                      // selectedTransmissionList = selectedList;
+                      transmission = selectedList;
+                      print(
+                          "selectedTransmissionList $selectedTransmissionList");
                     });
                   },
                 ),
@@ -622,24 +642,37 @@ class _SearchScreenState extends State<SearchScreen> {
   var mileageEndRangeController = TextEditingController();
 
  */
+
+                  print("selectedTransmissionList: $selectedTransmissionList");
+                  print("transmissiontt: $transmission");
+                  print("selectedBodyList : ${selectedBodyList}");
+                  //     print("transmission : ${selectedBodyList.join(",")}");
                   Provider.of<Contentrovider>(context, listen: false).filtter =
                       Filtter(
-                    bodyType: selectedBodyList,
+                    bodyType: selectedBodyList1.isEmpty
+                        ? Provider.of<Contentrovider>(context, listen: false)
+                            .filtter!
+                            .bodyType
+                        : selectedBodyList1,
                     mileageLowValue: mileageStartRangeController.text,
                     mileagehigherValue: mileageEndRangeController.text,
                     modelYearLowValue: makeStartRangeController.text,
                     modelYearhigherValue: makeEndRangeController.text,
                     priceLowValue: priceStartRangeController.text,
                     pricehigherValue: priceEndRangeController.text,
-                    transmission: selectedTransmissionList,
+                    transmission: transmission.isEmpty
+                        ? Provider.of<Contentrovider>(context, listen: false)
+                            .filtter!
+                            .transmission
+                        : transmission,
                   );
 
-                  print(
-                      "${Provider.of<Contentrovider>(context, listen: false).filtter!.mileageLowValue}");
-                  print(
-                      "${Provider.of<Contentrovider>(context, listen: false).filtter!.bodyType}");
-                  print(
-                      "${Provider.of<Contentrovider>(context, listen: false).filtter!.transmission}");
+                  pushNewScreen(
+                    context,
+                    screen: BottumNavBar(),
+                    withNavBar: false, // OPTIONAL VALUE. True by default.
+                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                  );
                 },
                 color: Colors.green,
                 child: Text(
@@ -660,8 +693,10 @@ class _SearchScreenState extends State<SearchScreen> {
 
 class MultiSelectChip extends StatefulWidget {
   final List<String> reportList;
+  final List<String> selectedList;
   final Function(List<String>) onSelectionChanged; // +added
-  MultiSelectChip(this.reportList, {required this.onSelectionChanged} // +added
+  MultiSelectChip(this.reportList,
+      {required this.onSelectionChanged, required this.selectedList} // +added
       );
   @override
   _MultiSelectChipState createState() => _MultiSelectChipState();
@@ -670,10 +705,11 @@ class MultiSelectChip extends StatefulWidget {
 class _MultiSelectChipState extends State<MultiSelectChip> {
   // String selectedChoice = "";
   List<String> selectedChoices = [];
-  _buildChoiceList() {
+  _buildChoiceList(BuildContext context) {
+    selectedChoices = widget.selectedList;
     List<Widget> choices = [];
     widget.reportList.forEach((item) {
-      choices.add(selectedChoices.contains(item)
+      choices.add(widget.selectedList.contains(item)
           ? Container(
               padding: const EdgeInsets.all(2.0),
               child: ChoiceChip(
@@ -727,7 +763,7 @@ class _MultiSelectChipState extends State<MultiSelectChip> {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      children: _buildChoiceList(),
+      children: _buildChoiceList(context),
     );
   }
 }

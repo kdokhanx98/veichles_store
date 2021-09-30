@@ -27,7 +27,7 @@ class AllVeichleItem extends StatelessWidget {
       child: Container(
         height: height * 0.31,
         width: double.infinity,
-        margin: EdgeInsets.only(top: 15, left: 5, right: 16),
+        margin: EdgeInsets.only(top: 15, left: 16, right: 16),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(5),

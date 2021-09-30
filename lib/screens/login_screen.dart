@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:motor_bike_new/provider/auth_provider.dart';
 import 'package:motor_bike_new/screens/forget_password_screen.dart';
-import 'package:motor_bike_new/screens/main_screen.dart';
+import 'package:motor_bike_new/screens/bottum_nav_bar_screen.dart';
 import 'package:motor_bike_new/screens/register_screen.dart';
 import 'package:provider/provider.dart';
 import '../constants.dart';
 
 class LoginScreen extends StatefulWidget {
-    static const routeName = '/login';
+  static const routeName = '/login';
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -19,7 +19,6 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailControl = TextEditingController();
 
   TextEditingController passwordControl = TextEditingController();
-
 
   saveForm(BuildContext context) {
     print('icslck');
@@ -33,39 +32,37 @@ class _LoginScreenState extends State<LoginScreen> {
     print("aaaaa");
 
     if (isValid) {
-            showLoaderDialog(context);
-
+      showLoaderDialog(context);
 
       Provider.of<AuthProvider>(context, listen: false)
           .getUserToken(
-            username: emailControl.text,
-            password: passwordControl.text,
+        username: emailControl.text,
+        password: passwordControl.text,
 
-            //   context: context
-          )
+        //   context: context
+      )
           .then((value) {
-            if(value){
-             Provider.of<AuthProvider>(context, listen: false).posetLogin().then((value) {
-                Navigator.of(context).pop();
+        if (value) {
+          Provider.of<AuthProvider>(context, listen: false)
+              .posetLogin()
+              .then((value) {
+            Navigator.of(context).pop();
 
-               Navigator.of(context).pushNamedAndRemoveUntil(MainScreen.routeName, (route) => false);
-             });
-
-                       //   
-
-            }else{
- Navigator.of(context).pop();
-            }
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                BottumNavBar.routeName, (route) => false);
           });
+
+          //
+
+        } else {
+          Navigator.of(context).pop();
+        }
+      });
     }
   }
 
- 
-
-
   @override
   Widget build(BuildContext context) {
-    
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
@@ -77,15 +74,19 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: size.height * 0.1,
               ),
-              Image.asset('assets/ars_logo.jpg'),
-               SizedBox(
+              Image.asset(
+                'assets/ars_logo.jpg',
+                height: size.height * 0.07,
+                width: size.width,
+              ),
+              SizedBox(
                 height: size.height * 0.03,
               ),
               Text(
                 "Sign in",
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
-               SizedBox(
+              SizedBox(
                 height: size.height * 0.04,
               ),
               Padding(
@@ -94,8 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   key: formKey,
                   child: Column(
                     children: [
-                  
-                       Container(
+                      Container(
                         width: size.width,
                         height: size.height * 0.09,
                         decoration: BoxDecoration(
@@ -138,11 +138,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                       ),
-                    
                       SizedBox(
                         height: size.height * 0.02,
                       ),
-                  
                       Container(
                         width: size.width,
                         height: size.height * 0.09,
@@ -183,51 +181,72 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                       ),
-                                      SizedBox(
+                      SizedBox(
                         height: size.height * 0.02,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                        GestureDetector(
-                          onTap: ()=>Navigator.of(context).pushNamed(ForgetPasswordScreen.routeName),
-                          child: Text("Forget Password?")),
-                      ],)
+                          GestureDetector(
+                              onTap: () => Navigator.of(context)
+                                  .pushNamed(ForgetPasswordScreen.routeName),
+                              child: Text("Forget Password?")),
+                        ],
+                      )
                     ],
                   ),
                 ),
               ),
-        SizedBox(height: size.height*0.25,),
-               GestureDetector(
-                            onTap: () {
-                              saveForm(context);
-                             // Navigator.of(context).pushNamed(MainScreen.routeName);
-                            },
-                            child: Container(
-                              width: size.width * 0.9,
-                              height: size.height * 0.077,
-                              decoration: BoxDecoration(
-                                  color: kPrimaryColor,
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Center(
-                                child: Text(
-                                  "Login",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: size.height*0.03,),
-                          GestureDetector(
-                                                      onTap: ()=>Navigator.of(context).pushNamedAndRemoveUntil(RegisterScreen.routeName, (route) => false),
-      
-                            child: Text("Sign up" , style: TextStyle(color: Colors.black , fontSize: 16 ,fontWeight: FontWeight.bold),)),
-                          SizedBox(height: size.height*0.05,),
-      
-      
+              SizedBox(
+                height: size.height * 0.25,
+              ),
+              GestureDetector(
+                onTap: () {
+                  saveForm(context);
+                  // Navigator.of(context).pushNamed(MainScreen.routeName);
+                },
+                child: Container(
+                  width: size.width * 0.9,
+                  height: size.height * 0.077,
+                  decoration: BoxDecoration(
+                      color: kPrimaryColor,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(
+                    child: Text(
+                      "Login",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: size.height * 0.01,
+              ),
+              GestureDetector(
+                  onTap: () => Navigator.of(context).pushNamedAndRemoveUntil(
+                      RegisterScreen.routeName, (route) => false),
+                  child: Container(
+                    width: size.width * 0.9,
+                    height: size.height * 0.06,
+                    decoration: BoxDecoration(
+                        // color: kPrimaryColor,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Center(
+                      child: Text(
+                        "Sign up",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  )),
+              SizedBox(
+                height: size.height * 0.05,
+              ),
             ],
           ),
         ),
@@ -235,7 +254,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-    showLoaderDialog(BuildContext context) {
+  showLoaderDialog(BuildContext context) {
     AlertDialog alert = AlertDialog(
       content: new Row(
         children: [
@@ -253,7 +272,6 @@ class _LoginScreenState extends State<LoginScreen> {
       },
     );
   }
-
 
   bool isValidEmail(String text) {
     return RegExp(

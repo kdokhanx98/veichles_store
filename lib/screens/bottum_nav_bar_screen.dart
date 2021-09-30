@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:motor_bike_new/provider/auth_provider.dart';
+import 'package:motor_bike_new/provider/content_provider.dart';
 import 'package:motor_bike_new/screens/account_screen.dart';
 import 'package:motor_bike_new/screens/contact_details_screen.dart';
 import 'package:motor_bike_new/screens/contact_us_screen.dart';
@@ -18,23 +19,32 @@ import 'dart:io' show Platform;
 
 import 'my_listings.dart';
 
-class MainScreen extends StatefulWidget {
-  static const routeName = '/MainScreen';
+class BottumNavBar extends StatefulWidget {
+  static const routeName = '/BottumNavBar';
 
   @override
-  _MainScreenState createState() => _MainScreenState();
+  _BottumNavBarState createState() => _BottumNavBarState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _BottumNavBarState extends State<BottumNavBar> {
   final bool isAndroid = Platform.isAndroid;
   PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
   final GlobalKey<ScaffoldState> _key = GlobalKey(); // Create a key
   @override
+  void dispose() {
+    _controller.dispose();
+    // TODO: _controller dispose
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final buttomIndex = Provider.of<Contentrovider>(context).bottumIndex;
+    _controller = PersistentTabController(initialIndex: buttomIndex);
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    final user=  Provider.of<AuthProvider>(context, listen: false).user!;
+    final user = Provider.of<AuthProvider>(context, listen: false).user!;
     return Scaffold(
       key: _key,
       drawer: Drawer(
@@ -80,11 +90,11 @@ class _MainScreenState extends State<MainScreen> {
             ),
             getDrawerItem(Icons.account_circle_outlined, "Account",
                 callback: () {
-                                Navigator.popAndPushNamed(context, AccountScreen.routeName);
+              Navigator.popAndPushNamed(context, AccountScreen.routeName);
 
               print("account clicked");
             }),
-             getDrawerItem(Icons.help_outline, "My Listings", callback: () {
+            getDrawerItem(Icons.list_alt_rounded, "My Listings", callback: () {
               Navigator.popAndPushNamed(context, MyListingsScreen.routeName);
             }),
             getDrawerItem(
@@ -100,17 +110,13 @@ class _MainScreenState extends State<MainScreen> {
                 callback: () {
               Navigator.popAndPushNamed(context, ContactDetails.routeName);
             }),
-           
-           
             getDrawerItem(Icons.help_outline, "FAQ", callback: () {
               Navigator.popAndPushNamed(context, FAQScreen.routeName);
             }),
-          
-              getDrawerItem(Icons.help_outline, "Logout", callback: () {
-              Navigator.pushNamedAndRemoveUntil(context, LoginScreen.routeName, (route) => false);
+            getDrawerItem(Icons.logout, "Logout", callback: () {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, LoginScreen.routeName, (route) => false);
             }),
-          
-
             SizedBox(height: height * 0.2),
             Center(
               child: Column(

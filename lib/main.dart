@@ -7,7 +7,7 @@ import 'package:motor_bike_new/screens/faq_screen.dart';
 import 'package:motor_bike_new/screens/favourite_screen.dart';
 import 'package:motor_bike_new/screens/forget_password_screen.dart';
 import 'package:motor_bike_new/screens/home_screen.dart';
-import 'package:motor_bike_new/screens/main_screen.dart';
+import 'package:motor_bike_new/screens/bottum_nav_bar_screen.dart';
 import 'package:motor_bike_new/screens/search_screen.dart';
 import 'package:motor_bike_new/screens/sell_now_screen.dart';
 import 'package:motor_bike_new/screens/settings_screen.dart';
@@ -72,12 +72,12 @@ class _MyAppState extends State<MyApp> {
           LoginScreen.routeName: (context) => LoginScreen(),
           RegisterScreen.routeName: (context) => RegisterScreen(),
           HomeScreen.routeName: (context) => HomeScreen(),
-          MainScreen.routeName: (context) => MainScreen(),
+          BottumNavBar.routeName: (context) => BottumNavBar(),
           FavouriteScreen.routeName: (context) => FavouriteScreen(),
           SearchScreen.routeName: (context) => SearchScreen(),
           SellScreen.routeName: (context) => SellScreen(),
           SideMenuScreen.routeName: (context) => SideMenuScreen(),
-          VehicleDetail.routeName: (context) => VehicleDetail(),
+          VehicleDetail.routeName: (contxext) => VehicleDetail(),
           ContactUs.routeName: (context) => ContactUs(),
           ContactDetails.routeName: (context) => ContactDetails(),
           SettingsScreen.routeName: (context) => SettingsScreen(),

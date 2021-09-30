@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:motor_bike_new/screens/login_screen.dart';
 import 'package:motor_bike_new/screens/register_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -10,17 +11,14 @@ class SplashScreen extends StatefulWidget {
 
 class SplashScreenState extends State<SplashScreen> {
   @override
-
   void initState() {
-     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.of(context).pushNamedAndRemoveUntil(RegisterScreen.routeName, (route) => false);
-       }  );
+    Future.delayed(const Duration(seconds: 3), () {
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(LoginScreen.routeName, (route) => false);
+    });
 
     super.initState();
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -48,15 +46,12 @@ class SplashScreenState extends State<SplashScreen> {
                         color: Colors.white, shape: BoxShape.circle),
                     child: Image.asset(
                       "assets/ars_logo.png",
-                     
                       width: 120,
                     ),
                   ),
-          
                 ],
               ),
             ),
-   
           ],
         ),
       ),

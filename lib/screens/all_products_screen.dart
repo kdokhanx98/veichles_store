@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:motor_bike_new/provider/content_provider.dart';
 import 'package:motor_bike_new/widgets/veichle_recently_item.dart';
+import 'package:provider/provider.dart';
 
 class ViewAllProudctsScreen extends StatefulWidget {
   @override
@@ -9,6 +11,8 @@ class ViewAllProudctsScreen extends StatefulWidget {
 class _ViewAllProudctsScreenState extends State<ViewAllProudctsScreen> {
   @override
   Widget build(BuildContext context) {
+    final recentlyAddedData =
+        Provider.of<Contentrovider>(context, listen: false).getvehicleLList;
     return Scaffold(
       appBar: AppBar(
         title: Text("All Proucts"),
@@ -24,7 +28,7 @@ class _ViewAllProudctsScreenState extends State<ViewAllProudctsScreen> {
                 child: ListView.builder(
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
-                    itemCount: 15,
+                    itemCount: recentlyAddedData.length,
                     physics: NeverScrollableScrollPhysics(),
                     itemBuilder: (BuildContext context, int index) {
                       return VeichleRecentlyItem(false, index);

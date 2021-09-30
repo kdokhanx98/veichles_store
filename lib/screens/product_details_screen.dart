@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:motor_bike_new/models/vehicle.dart';
 import 'package:motor_bike_new/provider/content_provider.dart';
 import 'package:motor_bike_new/screens/contact_us_screen.dart';
 import 'package:provider/provider.dart';
@@ -66,16 +67,30 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     });
   }
 
+  bool firstTime = true;
+  List<Vehicle>? recentlyAddedData;
   @override
   Widget build(BuildContext context) {
-    final recentlyAddedData = widget.title == "allVeichel"
-        ? Provider.of<Contentrovider>(context, listen: false).getvehicleLList
-        : Provider.of<Contentrovider>(context, listen: false)
+    if (firstTime) {
+      if (widget.title == "allVeichel") {
+        recentlyAddedData =
+            Provider.of<Contentrovider>(context, listen: false).getvehicleLList;
+      } else if (widget.title == "CateDate") {
+        recentlyAddedData = Provider.of<Contentrovider>(context, listen: false)
+            .getCatevehicleLList;
+      } else {
+        recentlyAddedData = Provider.of<Contentrovider>(context, listen: false)
             .getAllVehicleLList;
+      }
+      ;
+      setState(() {
+        firstTime = !firstTime;
+      });
+    }
 
     final height = MediaQuery.of(context).size.height;
     final itemDate =
-        recentlyAddedData.firstWhere((element) => element.id == widget.id);
+        recentlyAddedData!.firstWhere((element) => element.id == widget.id);
     financingVehiclePriceCont.text = itemDate.carleaderListingPrice!;
     return DefaultTabController(
       length: 2,
