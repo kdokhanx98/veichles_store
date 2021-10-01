@@ -86,19 +86,17 @@ class _AccountScreenState extends State<AccountScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backwardsCompatibility: true,
+        backgroundColor: Color(0xff00B241),
+        title: Text("My Account"),
+      ),
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: size.height * 0.1,
-            ),
-            Text(
-              "My Account",
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: size.height * 0.04,
+              height: size.height * 0.05,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10, right: 15, left: 15),
@@ -406,9 +404,6 @@ class _AccountScreenState extends State<AccountScreen> {
             ),
             SizedBox(
               height: size.height * 0.03,
-            ),
-            SizedBox(
-              height: size.height * 0.05,
             ),
           ],
         ),

@@ -76,10 +76,19 @@ class _BottumNavBarState extends State<BottumNavBar> {
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                         SizedBox(height: height * 0.01),
-                        Text(
-                          "Edit Profile",
-                          style: TextStyle(
-                              color: Colors.blue.shade900, fontSize: 16),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.popAndPushNamed(
+                                context, AccountScreen.routeName);
+                          },
+                          child: Container(
+                            width: width * 0.40,
+                            child: Text(
+                              "Edit Profile",
+                              style: TextStyle(
+                                  color: Colors.blue.shade900, fontSize: 16),
+                            ),
+                          ),
                         ),
                       ],
                     ),
