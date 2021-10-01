@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:motor_bike_new/models/filtter.dart';
 import 'package:motor_bike_new/provider/content_provider.dart';
 import 'package:motor_bike_new/screens/bottum_nav_bar_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
+
+import 'searched_vehicles_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   static const routeName = '/search';
@@ -39,7 +42,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   List<String> selectedTransmissionList = [];
   List<String> transmission = [];
-
+  bool isSearchLoding = false;
   List<String> transmissionList = [
     "Automatic",
     "Manual",
@@ -623,15 +626,22 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(top: 20.0, bottom: 40.0),
-              child: MaterialButton(
-                height: 50,
-                // minWidth: double.infinity,
-                minWidth: 150,
-                // shape:          RoundedRectangleBorder(borderRadius: new BorderRadius.circular(40.0)),
-                onPressed: () {
-                  print("saving search status");
+            isSearchLoding
+                ? Padding(
+                    padding: const EdgeInsets.only(top: 20.0, bottom: 40.0),
+                    child: Container(
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.only(top: 20.0, bottom: 40.0),
+                    child: MaterialButton(
+                      height: 50,
+                      // minWidth: double.infinity,
+                      minWidth: 150,
+                      // shape:          RoundedRectangleBorder(borderRadius: new BorderRadius.circular(40.0)),
+                      onPressed: () {
+                        print("saving search status");
 /*
 
   var makeStartRangeController = TextEditingController();
@@ -643,47 +653,89 @@ class _SearchScreenState extends State<SearchScreen> {
 
  */
 
-                  print("selectedTransmissionList: $selectedTransmissionList");
-                  print("transmissiontt: $transmission");
-                  print("selectedBodyList : $selectedBodyList");
-                  //     print("transmission : ${selectedBodyList.join(",")}");
-                  Provider.of<Contentrovider>(context, listen: false).filtter =
-                      Filtter(
-                    bodyType: selectedBodyList1.isEmpty
-                        ? Provider.of<Contentrovider>(context, listen: false)
-                            .filtter!
-                            .bodyType
-                        : selectedBodyList1,
-                    mileageLowValue: mileageStartRangeController.text,
-                    mileagehigherValue: mileageEndRangeController.text,
-                    modelYearLowValue: makeStartRangeController.text,
-                    modelYearhigherValue: makeEndRangeController.text,
-                    priceLowValue: priceStartRangeController.text,
-                    pricehigherValue: priceEndRangeController.text,
-                    transmission: transmission.isEmpty
-                        ? Provider.of<Contentrovider>(context, listen: false)
-                            .filtter!
-                            .transmission
-                        : transmission,
-                  );
+                        print(
+                            "selectedTransmissionList: $selectedTransmissionList");
+                        print("transmissiontt: $transmission");
+                        print("selectedBodyList : $selectedBodyList");
+                        //     print("transmission : ${selectedBodyList.join(",")}");
+                        Provider.of<Contentrovider>(context, listen: false)
+                            .filtter = Filtter(
+                          bodyType: selectedBodyList1.isEmpty
+                              ? Provider.of<Contentrovider>(context,
+                                      listen: false)
+                                  .filtter!
+                                  .bodyType
+                              : selectedBodyList1,
+                          mileageLowValue: mileageStartRangeController.text,
+                          mileagehigherValue: mileageEndRangeController.text,
+                          modelYearLowValue: makeStartRangeController.text,
+                          modelYearhigherValue: makeEndRangeController.text,
+                          priceLowValue: priceStartRangeController.text,
+                          pricehigherValue: priceEndRangeController.text,
+                          transmission: transmission.isEmpty
+                              ? Provider.of<Contentrovider>(context,
+                                      listen: false)
+                                  .filtter!
+                                  .transmission
+                              : transmission,
+                        );
 
-                  pushNewScreen(
-                    context,
-                    screen: BottumNavBar(),
-                    withNavBar: false, // OPTIONAL VALUE. True by default.
-                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                  );
-                },
-                color: Colors.green,
-                child: Text(
-                  "Update Search Results",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
+                        //   showLoaderDialog(context);
+                        setState(() {
+                          isSearchLoding = !isSearchLoding;
+                        });
+                        Provider.of<Contentrovider>(context, listen: false)
+                            .getFiltterRequest()
+                            .then((value) {
+                          //   Navigator.of(context).pop();
+                          if (value &&
+                              Provider.of<Contentrovider>(context,
+                                          listen: false)
+                                      .getAllVehicleLList
+                                      .length !=
+                                  0) {
+                            setState(() {
+                              isSearchLoding = !isSearchLoding;
+                            });
+
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      SearchedVhiclesScreen()),
+                            );
+                          } else {
+                            Fluttertoast.showToast(
+                                msg: "no Item",
+                                toastLength: Toast.LENGTH_LONG,
+                                gravity: ToastGravity.CENTER,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.white,
+                                textColor: Colors.black,
+                                fontSize: 16.0);
+                            setState(() {
+                              isSearchLoding = !isSearchLoding;
+                            });
+                          }
+                        });
+
+                        // pushNewScreen(
+                        //   context,
+                        //   screen: BottumNavBar(),
+                        //   withNavBar: false, // OPTIONAL VALUE. True by default.
+                        //   pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                        // );
+                      },
+                      color: Colors.green,
+                      child: Text(
+                        "Update Search Results",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            ),
           ],
         ),
       ),

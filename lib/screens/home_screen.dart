@@ -152,45 +152,57 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      //   showLoaderDialog(context);
-                                      setState(() {
-                                        isSearchLoding = !isSearchLoding;
-                                      });
                                       Provider.of<Contentrovider>(context,
                                               listen: false)
-                                          .getFiltterRequest()
-                                          .then((value) {
-                                        //   Navigator.of(context).pop();
-                                        if (value &&
-                                            Provider.of<Contentrovider>(context,
-                                                        listen: false)
-                                                    .getAllVehicleLList
-                                                    .length !=
-                                                0) {
-                                          setState(() {
-                                            isSearchLoding = !isSearchLoding;
-                                          });
+                                          .setBottumIndex(1);
 
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    SearchedVhiclesScreen()),
-                                          );
-                                        } else {
-                                          Fluttertoast.showToast(
-                                              msg: "no Item",
-                                              toastLength: Toast.LENGTH_LONG,
-                                              gravity: ToastGravity.CENTER,
-                                              timeInSecForIosWeb: 1,
-                                              backgroundColor: Colors.white,
-                                              textColor: Colors.black,
-                                              fontSize: 16.0);
-                                          setState(() {
-                                            isSearchLoding = !isSearchLoding;
-                                          });
-                                        }
-                                      });
+                                      pushNewScreen(
+                                        context,
+                                        screen: BottumNavBar(),
+                                        withNavBar:
+                                            false, // OPTIONAL VALUE. True by default.
+                                        pageTransitionAnimation:
+                                            PageTransitionAnimation.cupertino,
+                                      );
+                                      //   showLoaderDialog(context);
+                                      // setState(() {
+                                      //   isSearchLoding = !isSearchLoding;
+                                      // });
+                                      // Provider.of<Contentrovider>(context,
+                                      //         listen: false)
+                                      //     .getFiltterRequest()
+                                      //     .then((value) {
+                                      //   //   Navigator.of(context).pop();
+                                      //   if (value &&
+                                      //       Provider.of<Contentrovider>(context,
+                                      //                   listen: false)
+                                      //               .getAllVehicleLList
+                                      //               .length !=
+                                      //           0) {
+                                      //     setState(() {
+                                      //       isSearchLoding = !isSearchLoding;
+                                      //     });
+
+                                      //     Navigator.push(
+                                      //       context,
+                                      //       MaterialPageRoute(
+                                      //           builder: (context) =>
+                                      //               SearchedVhiclesScreen()),
+                                      //     );
+                                      //   } else {
+                                      //     Fluttertoast.showToast(
+                                      //         msg: "no Item",
+                                      //         toastLength: Toast.LENGTH_LONG,
+                                      //         gravity: ToastGravity.CENTER,
+                                      //         timeInSecForIosWeb: 1,
+                                      //         backgroundColor: Colors.white,
+                                      //         textColor: Colors.black,
+                                      //         fontSize: 16.0);
+                                      //     setState(() {
+                                      //       isSearchLoding = !isSearchLoding;
+                                      //     });
+                                      //   }
+                                      // });
                                     },
                                     child: Container(
                                         decoration: BoxDecoration(
