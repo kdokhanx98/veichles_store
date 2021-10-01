@@ -135,41 +135,64 @@ class _SellScreenState extends State<SellScreen> {
                 : Stack(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 16.0),
+                        padding: const EdgeInsets.only(top: 16.0, bottom: 16),
                         child: SizedBox(
                           height: height * 0.4,
                           width: double.infinity,
                           child: GridView.builder(
+                              scrollDirection: Axis.horizontal,
                               itemCount: selectedPics!.length,
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 3),
+                                crossAxisCount: 1,
+                              ),
                               itemBuilder: (BuildContext context, int index) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Center(
-                                      child: Stack(
-                                    children: [
-                                      Image.file(
-                                          File(selectedPics![index].path),
-                                          fit: BoxFit.cover),
-                                      Positioned(
-                                          child: GestureDetector(
-                                              onTap: () {
-                                                setState(() {
-                                                  selectedPics!.removeAt(index);
-                                                });
-                                              },
-                                              child: Icon(Icons.cancel))),
-                                    ],
-                                  )),
-                                );
+                                return Center(
+                                    child: Stack(
+                                  children: [
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 5.0),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                                  Colors.grey.withOpacity(0.5),
+                                              spreadRadius: 5,
+                                              blurRadius: 5,
+                                              offset: Offset(2,
+                                                  7), // changes position of shadow
+                                            ),
+                                          ],
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.file(
+                                              File(selectedPics![index].path),
+                                              fit: BoxFit.cover),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                        top: 8,
+                                        left: 4,
+                                        child: GestureDetector(
+                                            onTap: () {
+                                              setState(() {
+                                                selectedPics!.removeAt(index);
+                                              });
+                                            },
+                                            child: Icon(Icons.cancel))),
+                                  ],
+                                ));
                               }),
                         ),
                       ),
                       Positioned(
-                          bottom: 15,
-                          left: 15,
+                          bottom: 5,
+                          left: 8,
                           child: GestureDetector(
                             onTap: () {
                               print("clicked");
@@ -179,8 +202,8 @@ class _SellScreenState extends State<SellScreen> {
                               decoration: BoxDecoration(
                                   color: kPrimaryColor,
                                   borderRadius: BorderRadius.circular(50)),
-                              height: 35,
-                              width: 35,
+                              height: 40,
+                              width: 40,
                               child: Icon(Icons.add, color: Colors.white),
                             ),
                           )),
@@ -1043,6 +1066,7 @@ class _SellScreenState extends State<SellScreen> {
     selectedPics!.addAll(await _picker.pickMultiImage() as List<XFile>);
 
     if (selectedPics != null) {
+      selectedPics = selectedPics!.reversed.toList();
       print(selectedPics);
       setState(() {
         if (selectedPics!.isNotEmpty) {
