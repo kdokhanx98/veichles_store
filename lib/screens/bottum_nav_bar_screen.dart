@@ -187,9 +187,9 @@ class _BottumNavBarState extends State<BottumNavBar> {
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.find_in_page),
+        icon: Icon(Icons.search),
         title: ("Find"),
-        inactiveIcon: Icon(Icons.find_in_page_outlined),
+        inactiveIcon: Icon(Icons.search),
         activeColorPrimary: Color(0xff00B241),
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
