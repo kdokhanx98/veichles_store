@@ -23,28 +23,14 @@ class Contentrovider with ChangeNotifier {
   }
 
   Filtter? filtter = Filtter(
-      priceLowValue: "0",
-      pricehigherValue: "500000",
-      mileageLowValue: "0",
-      mileagehigherValue: "500000",
-      modelYearLowValue: "1970",
-      modelYearhigherValue: "2021",
-      bodyType: [
-        "Executive Coach",
-        "Limo Bus",
-        "Limousin Vans",
-        "Luxury Sedan",
-        "Luxury SUV",
-        "Mini Coach",
-        "Motor Coach",
-      ],
-      transmission: [
-        "Automatic",
-        "Manual",
-        "Allison",
-        "Automated Manual Transmission",
-        "CVT"
-      ]);
+      priceLowValue: "60000",
+      pricehigherValue: "125000",
+      mileageLowValue: "30000",
+      mileagehigherValue: "120000",
+      modelYearLowValue: "2006",
+      modelYearhigherValue: "2016",
+      bodyType: [],
+      transmission: []);
   String? location;
 
   changeData(String newData) {
@@ -151,6 +137,7 @@ class Contentrovider with ChangeNotifier {
     // check if Token avilable
 
     final url = Uri.parse("$getCatgeroyDateRequestUrl$id");
+    print("cat id $id");
 
     try {
       final response = await http.get(

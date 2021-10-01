@@ -37,8 +37,9 @@ class _CateDataScreenState extends State<CateDataScreen> {
   @override
   Widget build(BuildContext context) {
     final recentlyAddedData =
-        Provider.of<Contentrovider>(context, listen: false).getvehicleLList;
-
+        Provider.of<Contentrovider>(context, listen: false).getCatevehicleLList;
+    print("---------------------------------");
+    print("list size: ${recentlyAddedData.length}");
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff00B241),
@@ -58,7 +59,7 @@ class _CateDataScreenState extends State<CateDataScreen> {
                           itemCount: recentlyAddedData.length,
                           physics: NeverScrollableScrollPhysics(),
                           itemBuilder: (BuildContext context, int index) {
-                            return VeichleCateItem(true, index);
+                            return VeichleCateItem(false, index);
                           }),
                     ),
                   ],

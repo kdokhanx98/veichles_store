@@ -3,7 +3,7 @@ const String getRecentlyAdded =
     "$baseUrl/carleader-listing/?_fields=metadata,id,title,content,make-brand,body-type,images&per_page=5";
 const String getCatgeroyRequestUrl = "$baseUrl/body-type";
 const String getCatgeroyDateRequestUrl =
-    "https://arsdev.thefixable.com/wp-json/wp/v2/carleader-listing/?body-type=59&amp;per_page=3";
+    "https://arsdev.thefixable.com/wp-json/wp/v2/carleader-listing/?body-type=";
 const String postResgisterUrl = "$baseUrl/users";
 const String postupdateUrl = "$baseUrl/users/";
 const String postupdFiltterUrl =
