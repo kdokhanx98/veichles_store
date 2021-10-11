@@ -66,7 +66,7 @@ class _MyAppState extends State<MyApp> {
             appBarTheme: AppBarTheme(
               backwardsCompatibility: false,
             )),
-        home: SplashScreen(),
+        home: HomeScreen(),
         routes: {
           ForgetPasswordScreen.routeName: (context) => ForgetPasswordScreen(),
           LoginScreen.routeName: (context) => LoginScreen(),

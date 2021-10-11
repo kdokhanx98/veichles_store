@@ -76,48 +76,82 @@ class Contentrovider with ChangeNotifier {
       final recentAdded = responseData as List<dynamic>;
       _vehicleList.clear();
       recentAdded.map((e) {
+        print(" e['metadata'] ${ e['metadata']}");
         _vehicleList.add(Vehicle(
-            carleaderListingColor: e['metadata'].containsKey("_carleader_listing_color")
-                ? e['metadata']['_carleader_listing_color'][0]
-                : " ",
-            carleaderListingCondition: "",
-            carleaderListingModelName:
-                e['metadata'].containsKey("_carleader_listing_model_name")
-                    ? e['metadata']['_carleader_listing_model_name'][0]
-                    : " None",
-            yser: e['metadata'].containsKey("_carleader_listing_model_year")
-                ? e['metadata']['_carleader_listing_model_year'][0]
-                : "None",
-            wpufFormId: "",
-            title: e['title']['rendered'] ?? "",
-            seatingCapacity: "",
-            image: e['images'] != ""
-                ? (e['images'] as List<dynamic>)
-                    .map((element) => element.toString())
-                    .toList()
-                : [],
-            carleaderListingEngine: e['metadata'].containsKey('_carleader_listing_engine')
-                ? e['metadata']['_carleader_listing_engine'][0]
-                : "None",
-            carleaderListingMiles: e['metadata'].containsKey('_carleader_listing_miles')
-                ? e['metadata']['_carleader_listing_miles'][0]
-                : "None",
-            interiorColor: "",
-            id: e['id'].toString(),
-            carleaderListingModelTransmissionType: e['metadata']
-                    .containsKey("_carleader_listing_model_transmission_type")
-                ? e['metadata']['_carleader_listing_model_transmission_type'][0]
-                : "",
-            carleaderListingOdometer:
-                e['metadata'].containsKey("_carleader_listing_odometer")
-                    ? e['metadata']['_carleader_listing_odometer'][0]
-                    : "",
-            carleaderListingPrice: e['metadata'].containsKey("_carleader_listing_price") ? e['metadata']['_carleader_listing_price'][0] : "50",
-            metaBodyTitle: e['body-type'][0].containsKey("name") ? e['body-type'][0]['name'] : "None",
-            carleaderListingEngineflue: e['metadata'].containsKey("_carleader_listing_model_engine_fuel") ? e['metadata']['_carleader_listing_model_engine_fuel'][0] : "Gaz",
-            carleaderListingWheels: e['metadata'].containsKey('_carleader_listing_wheels') ? e['metadata']['_carleader_listing_wheels'][0] : "",
-            content: e['content']['rendered'] ?? "",
-            carleaderListingVin: e['metadata'].containsKey("_carleader_listing_vin") ? e['metadata']['_carleader_listing_vin'][0] : ""));
+          carleaderListingColor: e['metadata'] != []
+              ? e['metadata'].containsKey("_carleader_listing_color")
+                  ? e['metadata']['_carleader_listing_color'][0]
+                  : " "
+              : "None",
+          carleaderListingCondition: "",
+          carleaderListingModelName: e['metadata'] != []
+              ? e['metadata'].containsKey("_carleader_listing_model_name")
+                  ? e['metadata']['_carleader_listing_model_name'][0]
+                  : " None"
+              : "None",
+          yser: e['metadata'] != []
+              ? e['metadata'].containsKey("_carleader_listing_model_year")
+                  ? e['metadata']['_carleader_listing_model_year'][0]
+                  : "None"
+              : "None",
+          wpufFormId: "",
+          title: e['title']['rendered'] ?? "",
+          seatingCapacity: "",
+          image: e['images'] != ""
+              ? (e['images'] as List<dynamic>)
+                  .map((element) => element.toString())
+                  .toList()
+              : [],
+          carleaderListingEngine: e['metadata'] != []
+              ? e['metadata'].containsKey('_carleader_listing_engine')
+                  ? e['metadata']['_carleader_listing_engine'][0]
+                  : "None"
+              : "None",
+          carleaderListingMiles: e['metadata'] != []
+              ? e['metadata'].containsKey('_carleader_listing_miles')
+                  ? e['metadata']['_carleader_listing_miles'][0]
+                  : "None"
+              : "None",
+          interiorColor: "",
+          id: e['id'].toString(),
+          carleaderListingModelTransmissionType: e['metadata'] != []
+              ? e['metadata']
+                      .containsKey("_carleader_listing_model_transmission_type")
+                  ? e['metadata']['_carleader_listing_model_transmission_type']
+                      [0]
+                  : ""
+              : "None",
+          carleaderListingOdometer: e['metadata'] != []
+              ? e['metadata'].containsKey("_carleader_listing_odometer")
+                  ? e['metadata']['_carleader_listing_odometer'][0]
+                  : ""
+              : "None",
+          carleaderListingPrice: e['metadata'] != []
+              ? e['metadata'].containsKey("_carleader_listing_price")
+                  ? e['metadata']['_carleader_listing_price'][0]
+                  : "50"
+              : "None",
+          metaBodyTitle: e['body-type'] != false
+              ? e['body-type'][0]['name']
+              : "None", // e['body-type'][0].containsKey("name") ? e['body-type'][0]['name'] : "None",
+          carleaderListingEngineflue: e['metadata'] != []
+              ? e['metadata']
+                      .containsKey("_carleader_listing_model_engine_fuel")
+                  ? e['metadata']['_carleader_listing_model_engine_fuel'][0]
+                  : "Gaz"
+              : "none",
+          carleaderListingWheels: e['metadata'] != []
+              ? e['metadata'].containsKey('_carleader_listing_wheels')
+                  ? e['metadata']['_carleader_listing_wheels'][0]
+                  : ""
+              : "none",
+          content: e['content']['rendered'] ?? "",
+          carleaderListingVin: e['metadata'] != []
+              ? e['metadata'].containsKey("_carleader_listing_vin")
+                  ? e['metadata']['_carleader_listing_vin'][0]
+                  : ""
+              : "None",
+        ));
       }).toList();
       print('addedLog length : ${_vehicleList.length}');
 
