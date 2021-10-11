@@ -76,10 +76,19 @@ class _BottumNavBarState extends State<BottumNavBar> {
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                         SizedBox(height: height * 0.01),
-                        Text(
-                          "Edit Profile",
-                          style: TextStyle(
-                              color: Colors.blue.shade900, fontSize: 16),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.popAndPushNamed(
+                                context, AccountScreen.routeName);
+                          },
+                          child: Container(
+                            width: width * 0.40,
+                            child: Text(
+                              "Edit Profile",
+                              style: TextStyle(
+                                  color: Colors.blue.shade900, fontSize: 16),
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -187,9 +196,9 @@ class _BottumNavBarState extends State<BottumNavBar> {
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.find_in_page),
+        icon: Icon(Icons.search),
         title: ("Find"),
-        inactiveIcon: Icon(Icons.find_in_page_outlined),
+        inactiveIcon: Icon(Icons.search),
         activeColorPrimary: Color(0xff00B241),
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),

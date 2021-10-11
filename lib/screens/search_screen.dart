@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:motor_bike_new/models/filtter.dart';
 import 'package:motor_bike_new/provider/content_provider.dart';
-import 'package:motor_bike_new/screens/bottum_nav_bar_screen.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 
 import 'searched_vehicles_screen.dart';

@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:motor_bike_new/provider/content_provider.dart';
 import 'package:motor_bike_new/screens/all_categories_screen.dart';
 import 'package:motor_bike_new/screens/all_products_screen.dart';
 import 'package:motor_bike_new/screens/bottum_nav_bar_screen.dart';
-import 'package:motor_bike_new/screens/searched_vehicles_screen.dart';
 import 'package:motor_bike_new/widgets/veichle_recently_item.dart';
 import 'package:motor_bike_new/widgets/veichle_type_item.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
