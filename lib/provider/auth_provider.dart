@@ -58,8 +58,6 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-
-
   Future<bool> getUserToken({String? username, password}) async {
     // check if Token avilable
 
@@ -74,7 +72,7 @@ class AuthProvider with ChangeNotifier {
       final response = await http.post(url, body: userData);
 
       final responseData = json.decode(response.body);
-        log(" getUserToken $responseData");
+      log(" getUserToken $responseData");
 
       if (responseData.containsKey('code')) {
         String masg = responseData["message"];
@@ -105,31 +103,31 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-
-  Future<bool> postUpdateUser({String? username, firstName , lastName , email , id}) async {
+  Future<bool> postUpdateUser(
+      {String? username, firstName, lastName, email, id}) async {
     // check if Token avilable
-  print("username $username");
-  print("firstName $firstName");
-  print("lastName $lastName");
-  print("email $email");
-  print("id $id");
+    print("username $username");
+    print("firstName $firstName");
+    print("lastName $lastName");
+    print("email $email");
+    print("id $id");
     final url = Uri.parse("$postupdateUrl$id");
-
+  
     Map<String, String> userData = {
       "username": username!,
       "first_name": firstName,
       "last_name": lastName,
       "email": email,
     };
-  Map<String, String> header = {
+    Map<String, String> header = {
       "Authorization": "Bearer $token",
     };
 
     try {
-      final response = await http.post(url, body: userData , headers: header);
+      final response = await http.post(url, body: userData, headers: header);
 
       final responseData = json.decode(response.body);
-        log(" getUserToken $responseData");
+      log(" getUserToken $responseData");
 
       if (responseData.containsKey('code')) {
         String masg = responseData["message"];
@@ -145,8 +143,7 @@ class AuthProvider with ChangeNotifier {
 
         return false;
       } else {
-
-           user = User(
+        user = User(
             email: responseData['email'],
             firstName: responseData['first_name'],
             id: responseData['id'].toString(),
@@ -160,7 +157,7 @@ class AuthProvider with ChangeNotifier {
         // userNicName = responseData['user_nicename'];
         // userDisplayName = responseData['user_display_name'];
 
-     //   print(" getUserToken $token");
+        //   print(" getUserToken $token");
         print(" getUserToken $responseData");
         return true;
       }
@@ -170,15 +167,13 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-
-
   Future<bool> posetLogin() async {
     // check if Token avilable
 
     final url = Uri.parse(postLogin);
 
     Map<String, String> header = {
-  'Content-Type': 'application/json',
+      'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
     };
@@ -187,7 +182,7 @@ class AuthProvider with ChangeNotifier {
       final response = await http.post(url, headers: header);
 
       final responseData = json.decode(response.body);
-        print(" userPostLogin $responseData");
+      print(" userPostLogin $responseData");
 
       if (responseData.containsKey('code')) {
         String masg = responseData["message"];
@@ -203,16 +198,16 @@ class AuthProvider with ChangeNotifier {
 
         return false;
       } else {
-          user = User(
-            id: responseData['id'].toString(),
-            userName: responseData['username'],
-            email: responseData['email'],
-            firstName: responseData['firstname'],
-            lastName: responseData['lastname'],
-            link: "",
-            name: "",
-          );
-   //     print(" addedLog $token");
+        user = User(
+          id: responseData['id'].toString(),
+          userName: responseData['username'],
+          email: responseData['email'],
+          firstName: responseData['firstname'],
+          lastName: responseData['lastname'],
+          link: "",
+          name: "",
+        );
+        //     print(" addedLog $token");
         print(" userPostLogin $responseData");
         return true;
       }
@@ -221,11 +216,6 @@ class AuthProvider with ChangeNotifier {
       return false;
     }
   }
-
-
-
-
-
 
   Future<bool> postRegister(
       {String? userName, email, password, lastName, firstName}) async {
@@ -287,10 +277,6 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-
-
-
-
   Future<bool> postForgetPassword({String? email}) async {
     // check if Token avilable
 
@@ -346,11 +332,6 @@ class AuthProvider with ChangeNotifier {
       return false;
     }
   }
-
-
-
-
-
 
   Future<bool> postSetNewPassword({String? password, code}) async {
     // check if Token avilable

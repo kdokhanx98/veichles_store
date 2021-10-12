@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:motor_bike_new/provider/auth_provider.dart';
 import 'package:motor_bike_new/provider/content_provider.dart';
 import 'package:motor_bike_new/screens/all_categories_screen.dart';
 import 'package:motor_bike_new/screens/all_products_screen.dart';
@@ -29,6 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
   void didChangeDependencies() {
     if (isInit) {
       final providerData = Provider.of<Contentrovider>(context, listen: false);
+      final user = Provider.of<AuthProvider>(context, listen: false).user!;
+
       if (providerData.getCatgeroyLList.length == 0) {
         providerData.getCatgeroyRequest().then(
           (_) {
@@ -46,6 +49,13 @@ class _HomeScreenState extends State<HomeScreen> {
           isInit = false;
         });
       }
+      Provider.of<Contentrovider>(context, listen: false)
+          .getMyListingsRequest(user.id)
+          .then((value) {
+        setState(() {
+          isInit = false;
+        });
+      });
       super.didChangeDependencies();
     }
   }

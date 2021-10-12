@@ -23,7 +23,6 @@ import 'screens/my_listings.dart';
 import 'screens/register_screen.dart';
 import 'screens/searched_vehicles_screen.dart';
 import 'screens/set_new_passowrd_screen.dart';
-import 'screens/splash_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -66,7 +65,7 @@ class _MyAppState extends State<MyApp> {
             appBarTheme: AppBarTheme(
               backwardsCompatibility: false,
             )),
-        home: HomeScreen(),
+        home: LoginScreen(),
         routes: {
           ForgetPasswordScreen.routeName: (context) => ForgetPasswordScreen(),
           LoginScreen.routeName: (context) => LoginScreen(),

@@ -4,6 +4,8 @@ const String getRecentlyAdded =
 const String getCatgeroyRequestUrl = "$baseUrl/body-type";
 const String getCatgeroyDateRequestUrl =
     "https://arsdev.thefixable.com/wp-json/wp/v2/carleader-listing/?body-type=";
+const String getMyListingsDataRequestUrl =
+    "$baseUrl/carleader-listings/?_fields=&author=";
 const String postResgisterUrl = "$baseUrl/users";
 const String postupdateUrl = "$baseUrl/users/";
 const String postupdFiltterUrl =
